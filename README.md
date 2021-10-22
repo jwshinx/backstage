@@ -19,3 +19,9 @@ Build `bundle.js` for deployment. Test it locally. Build in root, and start in `
 - yarn build
 - cd build
 - npx serve
+
+## Jest
+
+Followed: http://www.thedreaming.org/2020/11/09/jest-for-web-projects/
+
+- yarn add -D jest babel-jest chai chai-jest chai-dom identity-obj-proxy
