@@ -7,7 +7,7 @@
     "start": "webpack serve --config webpack/webpack.config.js --env env=development",
     "build": "webpack --config webpack/webpack.config.js --env env=production",
     "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watch *.ts *.tsx *.js",
     "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },
   "keywords": [],
