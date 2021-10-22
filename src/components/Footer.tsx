@@ -1,9 +1,9 @@
 import React from 'react'
-import './footer.css'
+import styles from './Footer.module.css'
 
 export default function Footer() {
   return (
-    <div className="footer">
+    <div className={`${styles.footer}`}>
       <h3>Footer</h3>
       <br />
       <button className="btn btn-primary">Ooo</button>

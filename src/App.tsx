@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import './styles.css'
+import styles from './App.module.css'
 import IMAGE from './gsw.png'
 import LOGO from './logo.svg'
 import { Counter } from './components/Counter'
@@ -12,7 +12,7 @@ export const App = () => {
     <Router>
       <div className="container">
         <div className="row">
-          <div className="col-3 sidenav">
+          <div className={`col-3 ${styles.sidenav}`}>
             <h2>Logo</h2>
             <nav>
               <ul className="list-group">
@@ -50,7 +50,7 @@ export const App = () => {
                 <Counter />
               </div>
               <div className="col-3">
-                <div className="well orange">
+                <div className={`well ${styles.orange}`}>
                   <h4>Dashboard</h4>
                 </div>
               </div>
