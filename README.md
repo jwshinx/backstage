@@ -27,3 +27,5 @@ Followed: http://www.thedreaming.org/2020/11/09/jest-for-web-projects/
 - yarn add -D jest babel-jest chai chai-jest chai-dom identity-obj-proxy
 - yarn add -D @testing-library/jest-dom
 - yarn add -D react-test-renderer
+
+Run tests from root: `yarn test`
