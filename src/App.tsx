@@ -1,40 +1,43 @@
-import { useEffect } from 'react'
+import React from 'react'
+// import { useEffect } from 'react'
 import { Switch, Route, Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import styles from './App.module.css'
 
-import airbrake from './api/airbrake'
+// import airbrake from './api/airbrake'
 import GroupComponent from './components/group/GroupComponent'
 
+import HomepageComponent from './pages/homepage/HomepageComponent'
+
 export const App = () => {
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        const url = `/projects
-/${process.env.REACT_APP_AIRBRAKE_PROJECT_ID}
-/groups
-?page=1
-&limit=5
-&order=last_notice
-&key=${process.env.REACT_APP_AIRBRAKE_TOKEN}`
+  //   useEffect(() => {
+  //     const fetch = async () => {
+  //       try {
+  //         const url = `/projects
+  // /${process.env.REACT_APP_AIRBRAKE_PROJECT_ID}
+  // /groups
+  // ?page=1
+  // &limit=5
+  // &order=last_notice
+  // &key=${process.env.REACT_APP_AIRBRAKE_TOKEN}`
 
-        // console.log('+++> cocktails url 1:', url)
-        const { data }: { data: any } = await airbrake.get(url)
-        console.log('+++> airbrake fetched data 6:', data)
-      } catch (error) {
-        console.log('+++> api error:', error)
-      }
-    }
+  //         // console.log('+++> cocktails url 1:', url)
+  //         const { data }: { data: any } = await airbrake.get(url)
+  //         console.log('+++> airbrake fetched data 6:', data)
+  //       } catch (error) {
+  //         console.log('+++> api error:', error)
+  //       }
+  //     }
 
-    const identifier = setTimeout(() => {
-      fetch()
-    }, 2000)
+  //     const identifier = setTimeout(() => {
+  //       fetch()
+  //     }, 2000)
 
-    return () => {
-      clearTimeout(identifier)
-    }
-  }, [])
+  //     return () => {
+  //       clearTimeout(identifier)
+  //     }
+  //   }, [])
 
   return (
     <div className="container">
@@ -100,7 +103,7 @@ export const App = () => {
               <Route path="/">
                 <div className="col-12">
                   <div className="card card-body">
-                    <HomeComponent />
+                    <HomepageComponent />
                   </div>
                 </div>
               </Route>
@@ -110,10 +113,6 @@ export const App = () => {
       </div>
     </div>
   )
-}
-
-function HomeComponent() {
-  return <h4>Home component</h4>
 }
 
 function DeployComponent() {
