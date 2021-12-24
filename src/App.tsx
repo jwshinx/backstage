@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 // import styles from './App.module.css'
 
+import HeaderComponent from './components/header/HeaderComponent'
+
 import HomepageComponent from './pages/homepage/HomepageComponent'
 import ShopPageComponent from './pages/shop/ShopPageComponent'
 
@@ -12,10 +14,7 @@ export const App = () => {
     <div className="container">
       <div className="col-12">
         <div className="row mt-3 mb-3">
-          <h3>
-            {process.env.NODE_ENV} {process.env.name} {process.env.city}{' '}
-            {process.env.COLOR}
-          </h3>
+          <HeaderComponent />
         </div>
 
         <div className="row mt-3 mb-3">
