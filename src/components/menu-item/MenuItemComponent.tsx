@@ -1,6 +1,6 @@
 import React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
-// import './family_item.css';
+import styles from './MenuItemComponent.module.css'
 
 interface MenuItemComponentProps extends RouteComponentProps<any> {
   title: string
@@ -22,21 +22,22 @@ const MenuItemComponent: React.FC<MenuItemComponentProps> = (
   console.log('+++> MenuItemComponent bbb match:', match)
   console.log('+++> MenuItemComponent linkUrl:', linkUrl)
   console.log('+++> MenuItemComponent history:', history)
+  console.log('+++> MenuItemComponent size:', size)
 
   return (
     <div
-      className={`${size} family-item`}
+      className={styles['menu-item']}
       // onClick={() => history.push(`${match.url}/${linkUrl}`)}
     >
       <div
-        className="background-image"
+        className={styles['background-image']}
         style={{
           backgroundImage: `url(${imageUrl})`,
         }}
       />
-      <div className="content">
-        <h1 className="title">{title.toUpperCase()}</h1>
-        <span className="subtitle">SHOP NOW</span>
+      <div className={styles.content}>
+        <h1 className={styles.title}>{title.toUpperCase()}</h1>
+        <span className={styles.subtitle}>SHOP NOW</span>
       </div>
     </div>
   )
