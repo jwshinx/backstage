@@ -1,5 +1,6 @@
 import React from 'react'
-// import styles from './CollectionPreviewComponent.module.css'
+import styles from './CollectionPreviewComponent.module.css'
+import CollectionItemComponent from '../collection-item/CollectionItemComponent'
 import { Item } from '../../types/item'
 
 interface CollectionPreviewComponentProps {
@@ -14,13 +15,13 @@ export default function CollectionPreviewComponent(
 
   const { title, items } = props
   return (
-    <div>
+    <div className={styles['shop-preview']}>
       <h1>{title.toUpperCase()}</h1>
-      <div className="preview">
+      <div className={styles.preview}>
         {items
           .filter((item: Item, idx: number) => idx < 4)
-          .map((item: Item) => (
-            <div key={item.id}>{item.name}</div>
+          .map(({ id, ...otherItemProps }) => (
+            <CollectionItemComponent key={id} {...otherItemProps} />
           ))}
       </div>
     </div>
