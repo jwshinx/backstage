@@ -17,14 +17,17 @@ export default function HeaderComponent() {
           </Link>
         </div>
 
-        <div className="col-7"></div>
+        <div className="col-5"></div>
 
-        <div className={`col-4 ${styles.options}`}>
+        <div className={`col-6 ${styles.options}`}>
           <Link className={`p-2 ${styles.option}`} to="/shop">
             SHOP
           </Link>
           <Link className={`p-2 ${styles.option}`} to="/shop">
             CONTACT
+          </Link>
+          <Link className={`p-2 ${styles.option}`} to="/signin">
+            SIGN IN
           </Link>
         </div>
       </div>
