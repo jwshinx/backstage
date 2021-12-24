@@ -191,7 +191,7 @@ export default function ShopPageComponent() {
           <CollectionPreviewComponent
             key={key}
             title={key}
-            items={SHOP_DATA['guitars'].items}
+            items={SHOP_DATA[key as keyof typeof SHOP_DATA].items}
           />
         )
       })}
