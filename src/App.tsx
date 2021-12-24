@@ -1,11 +1,11 @@
 import React from 'react'
-// import { useEffect } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 // import styles from './App.module.css'
 
 import HomepageComponent from './pages/homepage/HomepageComponent'
+import ShopPageComponent from './pages/shop/ShopPageComponent'
 
 export const App = () => {
   return (
@@ -20,11 +20,8 @@ export const App = () => {
 
         <div className="row mt-3 mb-3">
           <Switch>
-            <Route path="/">
-              <div className="col-12">
-                <HomepageComponent />
-              </div>
-            </Route>
+            <Route exact path="/" component={HomepageComponent} />
+            <Route exact path="/shop" component={ShopPageComponent} />
           </Switch>
         </div>
       </div>
