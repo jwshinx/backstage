@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from './SignInComponent.module.css'
+// import styles from './SignInComponent.module.css'
 
 export default function SignInComponent() {
   const [enteredEmail, setEnteredEmail] = useState('')
@@ -37,8 +37,8 @@ export default function SignInComponent() {
     setPasswordIsTouched(true)
   }
 
-  const emailInputStyle = `six wide field input`
-  const passwordInputStyle = `six wide field input`
+  const emailInputStyle = `form-group my-3`
+  const passwordInputStyle = `form-group my-3`
 
   const enteredEmailIsValid = enteredEmail.includes('@')
   const enteredPasswordIsValid = enteredPassword.trim() !== ''
@@ -50,39 +50,45 @@ export default function SignInComponent() {
     passwordIsTouched
 
   return (
-    <div className={styles['sign-in']}>
-      <h2>I already have an account</h2>
-      <span>Sign in with your email and password</span>
+    <div className="col-6">
+      <div className="row">
+        <div className="col-12">
+          <h2>I already have an account</h2>
+          <span>Sign in with your email and password</span>
 
-      <form onSubmit={formSubmitHandler} className="ui form">
-        <div className={emailInputStyle}>
-          <input
-            placeholder="Email"
-            type="text"
-            id="email"
-            value={enteredEmail}
-            onChange={emailChangeHandler}
-            onBlur={emailInputBlurHandler}
-          />
-        </div>
-        <div className={passwordInputStyle}>
-          <input
-            placeholder="Password"
-            type="text"
-            id="password"
-            value={enteredPassword}
-            onChange={passwordChangeHandler}
-            onBlur={passwordInputBlurHandler}
-          />
-        </div>
+          <form onSubmit={formSubmitHandler}>
+            <div className={emailInputStyle}>
+              <input
+                className="form-control"
+                placeholder="Email"
+                type="email"
+                id="email"
+                value={enteredEmail}
+                onChange={emailChangeHandler}
+                onBlur={emailInputBlurHandler}
+              />
+            </div>
+            <div className={passwordInputStyle}>
+              <input
+                className="form-control"
+                placeholder="Password"
+                type="password"
+                id="password"
+                value={enteredPassword}
+                onChange={passwordChangeHandler}
+                onBlur={passwordInputBlurHandler}
+              />
+            </div>
 
-        <br />
-        <div className="form-actions">
-          <button disabled={!formIsValid} className="ui button primary">
-            Submit
-          </button>
+            <br />
+            <div className="form-actions">
+              <button disabled={!formIsValid} className="btn btn-primary">
+                Submit
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   )
 }
