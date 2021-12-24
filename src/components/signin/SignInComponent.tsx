@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 // import styles from './SignInComponent.module.css'
+import CustomButton from '../../ui/button/CustomButtonComponent'
 
 export default function SignInComponent() {
   const [enteredEmail, setEnteredEmail] = useState('')
@@ -54,7 +55,9 @@ export default function SignInComponent() {
       <div className="row">
         <div className="col-12">
           <h2>I already have an account</h2>
-          <span>Sign in with your email and password</span>
+          <span className="text-secondary">
+            Sign in with your email and password
+          </span>
 
           <form onSubmit={formSubmitHandler}>
             <div className={emailInputStyle}>
@@ -82,9 +85,9 @@ export default function SignInComponent() {
 
             <br />
             <div className="form-actions">
-              <button disabled={!formIsValid} className="btn btn-primary">
-                Submit
-              </button>
+              <CustomButton isDisabled={!formIsValid} type="submit">
+                Sign In
+              </CustomButton>
             </div>
           </form>
         </div>
