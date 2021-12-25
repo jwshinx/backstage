@@ -16,6 +16,16 @@
   display: flex;
   justify-content: center;
 }
+
+.custom-button:disabled {
+  opacity: 0.1;
+}
+
+.custom-button:disabled:hover {
+  background-color: black;
+  color: white;
+}
+
 .custom-button:hover {
   background-color: white;
   color: black;

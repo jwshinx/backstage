@@ -1,54 +1,54 @@
-import React, { useState } from 'react'
+import React from 'react'
 // import styles from './SignInComponent.module.css'
 import CustomButton from '../../ui/button/CustomButtonComponent'
+import useInput from '../../hooks/useInput'
 
 export default function SignInComponent() {
-  const [enteredEmail, setEnteredEmail] = useState('')
-  const [emailIsTouched, setEmailIsTouched] = useState(false)
-  const [enteredPassword, setEnteredPassword] = useState('')
-  const [passwordIsTouched, setPasswordIsTouched] = useState(false)
+  const {
+    value: enteredEmail,
+    isValid: enteredEmailIsValid,
+    hasError: emailHasError,
+    enteredValueChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailInputBlurHandler,
+  } = useInput((value: string) => value.includes('@'))
+
+  const {
+    value: enteredPassword,
+    isValid: enteredPasswordIsValid,
+    hasError: passwordHasError,
+    enteredValueChangeHandler: passwordChangeHandler,
+    inputBlurHandler: passwordInputBlurHandler,
+  } = useInput((value: string) => value.trim() !== '')
 
   const formSubmitHandler = (event: React.SyntheticEvent) => {
     event.preventDefault()
+
+    if (!formIsValid) {
+      return
+    }
+
     console.log(`+++> SIC formSubmitHandler 0`)
   }
 
-  const emailChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    console.log(`+++> SIC emailChangeHandler 0:`, event.currentTarget.value)
-    setEnteredEmail(event.currentTarget.value)
+  const emailFormGroupStyle = emailHasError
+    ? `form-group my-3 has-error has-feedback`
+    : `form-group my-3`
+
+  const passwordFormGroupStyle = emailHasError
+    ? `form-group my-3 has-error has-feedback`
+    : `form-group my-3`
+
+  const emailInputStyle = emailHasError
+    ? `form-control is-invalid`
+    : `form-control`
+  const passwordInputStyle = passwordHasError
+    ? `form-control is-invalid`
+    : `form-control`
+
+  let formIsValid = false
+  if (enteredEmailIsValid && enteredPasswordIsValid) {
+    formIsValid = true
   }
-
-  const emailInputBlurHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    console.log(`+++> SIC emailInputBlurHandler 0:`, event.currentTarget.value)
-    setEmailIsTouched(true)
-  }
-
-  const passwordChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    console.log(`+++> SIC passwordChangeHandler 0:`, event.currentTarget.value)
-    setEnteredPassword(event.currentTarget.value)
-  }
-
-  const passwordInputBlurHandler = (
-    event: React.FormEvent<HTMLInputElement>
-  ) => {
-    console.log(
-      `+++> SIC passwordInputBlurHandler 0:`,
-      event.currentTarget.value
-    )
-    setPasswordIsTouched(true)
-  }
-
-  const emailInputStyle = `form-group my-3`
-  const passwordInputStyle = `form-group my-3`
-
-  const enteredEmailIsValid = enteredEmail.includes('@')
-  const enteredPasswordIsValid = enteredPassword.trim() !== ''
-
-  const formIsValid =
-    enteredEmailIsValid &&
-    emailIsTouched &&
-    enteredPasswordIsValid &&
-    passwordIsTouched
 
   return (
     <div className="col-6">
@@ -60,9 +60,9 @@ export default function SignInComponent() {
           </span>
 
           <form onSubmit={formSubmitHandler}>
-            <div className={emailInputStyle}>
+            <div className={emailFormGroupStyle}>
               <input
-                className="form-control"
+                className={emailInputStyle}
                 placeholder="Email"
                 type="email"
                 id="email"
@@ -70,10 +70,15 @@ export default function SignInComponent() {
                 onChange={emailChangeHandler}
                 onBlur={emailInputBlurHandler}
               />
+              {emailHasError && (
+                <p className="text-danger">
+                  <small>Please enter a value.</small>
+                </p>
+              )}
             </div>
-            <div className={passwordInputStyle}>
+            <div className={passwordFormGroupStyle}>
               <input
-                className="form-control"
+                className={passwordInputStyle}
                 placeholder="Password"
                 type="password"
                 id="password"
@@ -81,6 +86,11 @@ export default function SignInComponent() {
                 onChange={passwordChangeHandler}
                 onBlur={passwordInputBlurHandler}
               />
+              {passwordHasError && (
+                <p className="text-danger">
+                  <small>Please enter a value.</small>
+                </p>
+              )}
             </div>
 
             <br />
