@@ -32,12 +32,12 @@ export default function SignInComponent() {
   }
 
   const emailFormGroupStyle = emailHasError
-    ? `form-group my-3 has-error has-feedback`
-    : `form-group my-3`
+    ? `form-group has-error has-feedback`
+    : `form-group`
 
   const passwordFormGroupStyle = emailHasError
-    ? `form-group my-3 has-error has-feedback`
-    : `form-group my-3`
+    ? `form-group has-error has-feedback`
+    : `form-group`
 
   const emailInputStyle = emailHasError
     ? `form-control is-invalid`
@@ -54,58 +54,72 @@ export default function SignInComponent() {
   return (
     <div className="col-8">
       <div className="row">
-        <div className="col-12">
+        <div className="col">
           <h2>I already have an account</h2>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
           <span className="text-secondary">
             Sign in with your email and password
           </span>
-
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-12">
           <form onSubmit={formSubmitHandler}>
-            <div className={emailFormGroupStyle}>
-              <input
-                className={emailInputStyle}
-                placeholder="Email"
-                type="email"
-                id="email"
-                value={enteredEmail}
-                onChange={emailChangeHandler}
-                onBlur={emailInputBlurHandler}
-              />
-              {emailHasError && (
-                <p className="text-danger">
-                  <small>Please enter a value.</small>
-                </p>
-              )}
+            <div className="row my-3">
+              <div className={emailFormGroupStyle}>
+                <input
+                  className={emailInputStyle}
+                  placeholder="Email"
+                  type="email"
+                  id="email"
+                  value={enteredEmail}
+                  onChange={emailChangeHandler}
+                  onBlur={emailInputBlurHandler}
+                />
+                {emailHasError && (
+                  <p className="text-danger">
+                    <small>Please enter a value.</small>
+                  </p>
+                )}
+              </div>
             </div>
-            <div className={passwordFormGroupStyle}>
-              <input
-                className={passwordInputStyle}
-                placeholder="Password"
-                type="password"
-                id="password"
-                value={enteredPassword}
-                onChange={passwordChangeHandler}
-                onBlur={passwordInputBlurHandler}
-              />
-              {passwordHasError && (
-                <p className="text-danger">
-                  <small>Please enter a value.</small>
-                </p>
-              )}
+            <div className="row my-3">
+              <div className={passwordFormGroupStyle}>
+                <input
+                  className={passwordInputStyle}
+                  placeholder="Password"
+                  type="password"
+                  id="password"
+                  value={enteredPassword}
+                  onChange={passwordChangeHandler}
+                  onBlur={passwordInputBlurHandler}
+                />
+                {passwordHasError && (
+                  <p className="text-danger">
+                    <small>Please enter a value.</small>
+                  </p>
+                )}
+              </div>
             </div>
 
-            <br />
-            <div className="form-actions">
-              <CustomButton isDisabled={!formIsValid} type="submit">
-                Sign In
-              </CustomButton>
-              <button
-                className={`${styles['custom-button']} ${styles['google-sign-in']}`}
-                onClick={signInWithGoogle}
-                type="submit"
-              >
-                Sign in with Google
-              </button>
+            <div className="row">
+              <div className="col-4">
+                <CustomButton isDisabled={!formIsValid} type="submit">
+                  Sign In
+                </CustomButton>
+              </div>
+              <div className="col-8">
+                <button
+                  className={`${styles['custom-button']} ${styles['google-sign-in']}`}
+                  onClick={signInWithGoogle}
+                  type="submit"
+                >
+                  Sign in with Google
+                </button>
+              </div>
             </div>
           </form>
         </div>
