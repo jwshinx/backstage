@@ -7,7 +7,7 @@ import HeaderComponent from './components/header/HeaderComponent'
 import HomepageComponent from './pages/homepage/HomepageComponent'
 import ShopPageComponent from './pages/shop/ShopPageComponent'
 import SignInPageComponent from './pages/signin/SignInPageComponent'
-import { auth } from '../src/firebase/firebase.utils'
+import { auth, createUserProfileDocument } from '../src/firebase/firebase.utils'
 
 export const App = () => {
   const [currentUser, setCurrentUser] = useState<any | null>(null)
@@ -15,8 +15,9 @@ export const App = () => {
   // let authSubscription
   useEffect(() => {
     console.log(`+++> App useEffect 0a`)
-    auth.onAuthStateChanged((user: any) => {
+    auth.onAuthStateChanged(async (user: any) => {
       setCurrentUser(user)
+      createUserProfileDocument(user, { color: 'red' })
     })
     // auth.onAuthStateChanged((user) => setCurrentUser({ currentUser: user }))
 
