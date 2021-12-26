@@ -2,7 +2,7 @@ import React from 'react'
 // import styles from './SignInComponent.module.css'
 import CustomButton from '../../ui/button/CustomButtonComponent'
 import useInput from '../../hooks/useInput'
-
+import { signInWithGoogle } from '../../firebase/firebase.utils'
 export default function SignInComponent() {
   const {
     value: enteredEmail,
@@ -97,6 +97,13 @@ export default function SignInComponent() {
             <div className="form-actions">
               <CustomButton isDisabled={!formIsValid} type="submit">
                 Sign In
+              </CustomButton>
+              <CustomButton
+                onClick={signInWithGoogle}
+                isDisabled={!formIsValid}
+                type="submit"
+              >
+                Sign in with Google
               </CustomButton>
             </div>
           </form>
