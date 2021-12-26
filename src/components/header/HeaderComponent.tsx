@@ -7,7 +7,17 @@ import styles from './HeaderComponent.module.css'
 
 export default function HeaderComponent(props: any) {
   console.log(`+++> HeaderComponent props:`, props)
-  const { currentUser } = props
+
+  let currentUser = null
+  if (props.currentUser) {
+    currentUser = props.currentUser.currentUser
+  }
+  // const { currentUser } = props.currentUser
+  console.log(`+++> HeaderComponent currentUser:`, currentUser)
+  // console.log(
+  //   `+++> HeaderComponent currentUser.displayName:`,
+  //   currentUser.currentUser.displayName
+  // )
   return (
     <div className="ui secondary pointing menu">
       <div className="row">

@@ -15,17 +15,30 @@ export const App = () => {
   // let authSubscription
   useEffect(() => {
     console.log(`+++> App useEffect 0a`)
-    auth.onAuthStateChanged(async (user: any) => {
-      setCurrentUser(user)
-      createUserProfileDocument(user, { color: 'red' })
+    auth.onAuthStateChanged(async (userAuth: any) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth, {
+          color: 'red',
+        })
+        userRef!.onSnapshot((snapShot) => {
+          setCurrentUser({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data(),
+            },
+          })
+        })
+      } else {
+        setCurrentUser({ currentUser: userAuth })
+      }
     })
-    // auth.onAuthStateChanged((user) => setCurrentUser({ currentUser: user }))
 
     return () => {
       console.log(`+++> App useEffect 100`)
       // authSubscription
     }
   }, [])
+
   console.log(`+++> App useEffect 1a   currentUser:`, currentUser)
 
   return (
