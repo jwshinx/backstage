@@ -1,11 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { auth } from '../../firebase/firebase.utils'
 import Logo from '../../assets/radio_black_24dp.svg'
 
 import styles from './HeaderComponent.module.css'
 
-export default function HeaderComponent() {
+export default function HeaderComponent(props: any) {
+  console.log(`+++> HeaderComponent props:`, props)
+  const { currentUser } = props
   return (
     <div className="ui secondary pointing menu">
       <div className="row">
@@ -17,18 +19,32 @@ export default function HeaderComponent() {
           </Link>
         </div>
 
-        <div className="col-5"></div>
+        <div className="col-4">
+          {currentUser && <span>{currentUser.displayName}</span>}
+        </div>
 
-        <div className={`col-6 ${styles.options}`}>
-          <Link className={`p-2 ${styles.option}`} to="/shop">
-            SHOP
-          </Link>
-          <Link className={`p-2 ${styles.option}`} to="/shop">
-            CONTACT
-          </Link>
-          <Link className={`p-2 ${styles.option}`} to="/signin">
-            SIGN IN
-          </Link>
+        <div className={`col-7`}>
+          <div className="row">
+            <div className="col-sm-auto">
+              <Link to="/shop">SHOP</Link>
+            </div>
+            <div className="col-sm-auto">
+              <Link to="/shop">CONTACT</Link>
+            </div>
+            {currentUser ? (
+              <div
+                className={`col-sm-auto link-primary ${styles['sign-out']}`}
+                onClick={() => auth.signOut()}
+                aria-hidden="true"
+              >
+                SIGN OUT
+              </div>
+            ) : (
+              <div className="col-sm-auto">
+                <Link to="/signin">SIGN IN</Link>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -70,10 +70,10 @@ const CATEGORY_DATA = [
 ]
 
 // const FamilyMenu: React.FC<FamilyMenuProps> = (props): JSX.Element => {
-const HomepageMenuComponent: React.FC<any> = (props): JSX.Element => {
-  console.log(`+++> HMC 0 props:`, props)
+const HomepageMenuComponent: React.FC<any> = (): JSX.Element => {
+  // console.log(`+++> HMC 0 props:`, props)
   const categoryData = CATEGORY_DATA
-  console.log(`+++> HMC 0 categoryData:`, categoryData)
+  // console.log(`+++> HMC 0 categoryData:`, categoryData)
 
   return (
     <div className={styles['category-menu']}>

@@ -17,12 +17,13 @@ interface MenuItemComponentProps extends RouteComponentProps<any> {
 const MenuItemComponent: React.FC<MenuItemComponentProps> = (
   props
 ): JSX.Element => {
-  console.log('+++> MenuItemComponent bbb props:', props)
-  const { title, imageUrl, size, history, linkUrl, match } = props
-  console.log('+++> MenuItemComponent bbb match:', match)
-  console.log('+++> MenuItemComponent linkUrl:', linkUrl)
-  console.log('+++> MenuItemComponent history:', history)
-  console.log('+++> MenuItemComponent size:', size)
+  // console.log('+++> MenuItemComponent bbb props:', props)
+  // const { title, imageUrl, size, history, linkUrl, match } = props
+  const { title, imageUrl } = props
+  // console.log('+++> MenuItemComponent bbb match:', match)
+  // console.log('+++> MenuItemComponent linkUrl:', linkUrl)
+  // console.log('+++> MenuItemComponent history:', history)
+  // console.log('+++> MenuItemComponent size:', size)
 
   return (
     <div

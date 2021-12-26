@@ -53,7 +53,7 @@ export default function SignInComponent() {
   }
 
   return (
-    <div className="col-6">
+    <div className="col-8">
       <div className="row">
         <div className="col-12">
           <h2>I already have an account</h2>
@@ -101,7 +101,7 @@ export default function SignInComponent() {
                 Sign In
               </CustomButton>
               <button
-                className={styles['custom-button']}
+                className={`google-sign-in ${styles['custom-button']}`}
                 onClick={signInWithGoogle}
                 type="submit"
               >
