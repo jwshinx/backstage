@@ -1,5 +1,4 @@
 import React from 'react'
-// import styles from './SignInComponent.module.css'
 import styles from '../../ui/button/CustomButtonComponent.module.css'
 import CustomButton from '../../ui/button/CustomButtonComponent'
 import useInput from '../../hooks/useInput'
@@ -101,7 +100,7 @@ export default function SignInComponent() {
                 Sign In
               </CustomButton>
               <button
-                className={`google-sign-in ${styles['custom-button']}`}
+                className={`${styles['custom-button']} ${styles['google-sign-in']}`}
                 onClick={signInWithGoogle}
                 type="submit"
               >
