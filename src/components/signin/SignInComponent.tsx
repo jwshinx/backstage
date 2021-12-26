@@ -1,8 +1,10 @@
 import React from 'react'
 // import styles from './SignInComponent.module.css'
+import styles from '../../ui/button/CustomButtonComponent.module.css'
 import CustomButton from '../../ui/button/CustomButtonComponent'
 import useInput from '../../hooks/useInput'
 import { signInWithGoogle } from '../../firebase/firebase.utils'
+
 export default function SignInComponent() {
   const {
     value: enteredEmail,
@@ -98,13 +100,13 @@ export default function SignInComponent() {
               <CustomButton isDisabled={!formIsValid} type="submit">
                 Sign In
               </CustomButton>
-              <CustomButton
+              <button
+                className={styles['custom-button']}
                 onClick={signInWithGoogle}
-                isDisabled={!formIsValid}
                 type="submit"
               >
                 Sign in with Google
-              </CustomButton>
+              </button>
             </div>
           </form>
         </div>
