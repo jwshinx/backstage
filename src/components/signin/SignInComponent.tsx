@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '../../ui/button/CustomButtonComponent.module.css'
 import CustomButton from '../../ui/button/CustomButtonComponent'
 import useInput from '../../hooks/useInput'
-import { signInWithGoogle } from '../../firebase/firebase.utils'
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils'
 
 export default function SignInComponent() {
   const {
@@ -23,17 +23,22 @@ export default function SignInComponent() {
     resetValue: resetPasswordValue,
   } = useInput((value: string) => value.trim() !== '')
 
-  const formSubmitHandler = (event: React.SyntheticEvent) => {
+  const formSubmitHandler = async (event: React.SyntheticEvent) => {
     event.preventDefault()
+    console.log(`+++> SIC formSubmitHandler 0`)
 
     if (!formIsValid) {
       return
     }
 
-    console.log(`+++> SIC formSubmitHandler 0`)
-    resetEmailValue()
-    resetPasswordValue()
-    console.log(`+++> SIC formSubmitHandler 1`)
+    try {
+      await auth.signInWithEmailAndPassword(enteredEmail, enteredPassword)
+      resetEmailValue()
+      resetPasswordValue()
+      console.log(`+++> SIC formSubmitHandler 1`)
+    } catch (error) {
+      console.log(`+++> SIC formSubmitHandler error:`, error)
+    }
   }
 
   const emailFormGroupStyle = emailHasError
