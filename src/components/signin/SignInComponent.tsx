@@ -11,6 +11,7 @@ export default function SignInComponent() {
     hasError: emailHasError,
     enteredValueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailInputBlurHandler,
+    resetValue: resetEmailValue,
   } = useInput((value: string) => value.includes('@'))
 
   const {
@@ -19,6 +20,7 @@ export default function SignInComponent() {
     hasError: passwordHasError,
     enteredValueChangeHandler: passwordChangeHandler,
     inputBlurHandler: passwordInputBlurHandler,
+    resetValue: resetPasswordValue,
   } = useInput((value: string) => value.trim() !== '')
 
   const formSubmitHandler = (event: React.SyntheticEvent) => {
@@ -29,6 +31,9 @@ export default function SignInComponent() {
     }
 
     console.log(`+++> SIC formSubmitHandler 0`)
+    resetEmailValue()
+    resetPasswordValue()
+    console.log(`+++> SIC formSubmitHandler 1`)
   }
 
   const emailFormGroupStyle = emailHasError
@@ -52,7 +57,7 @@ export default function SignInComponent() {
   }
 
   return (
-    <div className="col-8">
+    <div className="col-12">
       <div className="row">
         <div className="col">
           <h2>I already have an account</h2>
@@ -115,7 +120,7 @@ export default function SignInComponent() {
                 <button
                   className={`${styles['custom-button']} ${styles['google-sign-in']}`}
                   onClick={signInWithGoogle}
-                  type="submit"
+                  type="button"
                 >
                   Sign in with Google
                 </button>

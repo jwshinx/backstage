@@ -11,16 +11,22 @@ export default function useInput(validationFn: any) {
   const enteredValueChangeHandler = (
     event: React.FormEvent<HTMLInputElement>
   ) => {
-    console.log(
-      `+++> useInput enteredValueChangeHandler 0:`,
-      event.currentTarget.value
-    )
+    // console.log(
+    //   `+++> useInput enteredValueChangeHandler 0:`,
+    //   event.currentTarget.value
+    // )
     setEnteredValue(event.currentTarget.value)
   }
 
-  const inputBlurHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    console.log(`+++> useInput inputBlurHandler 0:`, event.currentTarget.value)
+  // const inputBlurHandler = (event: React.FormEvent<HTMLInputElement>) => {
+  const inputBlurHandler = () => {
+    // console.log(`+++> useInput inputBlurHandler 0:`, event.currentTarget.value)
     setIsTouched(true)
+  }
+
+  const resetValue = () => {
+    setEnteredValue('')
+    setIsTouched(false)
   }
 
   return {
@@ -29,5 +35,6 @@ export default function useInput(validationFn: any) {
     hasError: inputHasError,
     enteredValueChangeHandler: enteredValueChangeHandler,
     inputBlurHandler: inputBlurHandler,
+    resetValue: resetValue,
   }
 }
