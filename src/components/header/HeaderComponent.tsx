@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { auth } from '../../firebase/firebase.utils'
 import Logo from '../../assets/radio_black_24dp.svg'
+import CartIconComponent from '../cart-icon/CartIconComponent'
 
 import styles from './HeaderComponent.module.css'
 
@@ -29,11 +30,11 @@ export default function HeaderComponent(props: any) {
           </Link>
         </div>
 
-        <div className="col-4">
+        <div className="col-3">
           {currentUser && <span>{currentUser.displayName}</span>}
         </div>
 
-        <div className={`col-7`}>
+        <div className={`col-8`}>
           <div className="row">
             <div className="col-sm-auto">
               <Link to="/shop">SHOP</Link>
@@ -54,6 +55,9 @@ export default function HeaderComponent(props: any) {
                 <Link to="/signin">SIGN IN</Link>
               </div>
             )}
+            <div className="col-sm-auto">
+              <CartIconComponent />
+            </div>
           </div>
         </div>
       </div>
