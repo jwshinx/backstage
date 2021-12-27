@@ -1,6 +1,10 @@
 import React from 'react'
 import useInput from '../../hooks/useInput'
 import CustomButton from '../../ui/button/CustomButtonComponent'
+import {
+  auth,
+  createUserProfileDocument,
+} from '../../../src/firebase/firebase.utils'
 
 export default function SignUpComponent() {
   // const [enteredDisplayName, setEnteredDisplayName] = useState('')
@@ -42,7 +46,7 @@ export default function SignUpComponent() {
     resetValue: resetConfirmPasswordValue,
   } = useInput((value: string) => value.trim() !== '')
 
-  const formSubmitHandler = (event: React.SyntheticEvent) => {
+  const formSubmitHandler = async (event: React.SyntheticEvent) => {
     event.preventDefault()
     console.log(`+++> SUC formSubmitHandler 0`)
 
@@ -50,11 +54,26 @@ export default function SignUpComponent() {
       return
     }
 
-    resetDisplayNameValue()
-    resetEmailValue()
-    resetPasswordValue()
-    resetConfirmPasswordValue()
-    console.log(`+++> SUC formSubmitHandler 1`)
+    if (enteredPassword !== enteredConfirmPassword) {
+      alert('Confirm password.')
+      return
+    }
+
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        enteredEmail,
+        enteredPassword
+      )
+      await createUserProfileDocument(user, { displayName: enteredDisplayName })
+      resetDisplayNameValue()
+      resetEmailValue()
+      resetPasswordValue()
+      resetConfirmPasswordValue()
+    } catch (error) {
+      console.log(`+++> SUC formSubmitHandler error:`, error)
+    }
+
+    console.log(`+++> SUC formSubmitHandler 100`)
   }
 
   const displayNameFormGroupStyle = enteredDisplayNameIsValid
