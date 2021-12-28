@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { auth } from '../../firebase/firebase.utils'
 import Logo from '../../assets/radio_black_24dp.svg'
@@ -8,12 +8,20 @@ import CartDropdownComponent from '../cart-dropdown/CartDropdownComponent'
 import styles from './HeaderComponent.module.css'
 
 export default function HeaderComponent(props: any) {
+  const [showCart, setShowCart] = useState(false)
+
   console.log(`+++> HeaderComponent props:`, props)
 
   let currentUser = null
   if (props.currentUser) {
     currentUser = props.currentUser.currentUser
   }
+
+  const cartIconClickHandler = () => {
+    // console.log(`+++> HC cartIconChangeHandler 0 showCart:`, showCart)
+    setShowCart((prevState) => !prevState)
+  }
+
   // const { currentUser } = props.currentUser
   console.log(`+++> HeaderComponent currentUser:`, currentUser)
   // console.log(
@@ -22,7 +30,7 @@ export default function HeaderComponent(props: any) {
   // )
   return (
     <div className="ui secondary pointing menu">
-      <div className="row">
+      <div className={`row ${styles.header}`}>
         <div className={`col-1 ${styles['logo-container']}`}>
           <Link className="logo-container" to="/">
             <div className="logo">
@@ -57,10 +65,12 @@ export default function HeaderComponent(props: any) {
               </div>
             )}
             <div className="col-sm-auto">
-              <CartIconComponent />
-            </div>
-            <div className="col-sm-auto">
-              <CartDropdownComponent />
+              <CartIconComponent cartIconClickHandler={cartIconClickHandler} />
+              {showCart && (
+                <div className={`${styles['cart-dropdown-area']}`}>
+                  <CartDropdownComponent />
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -1,6 +1,14 @@
 .cart-dropdown {
-  background-color: yellow;
+  background-color: white;
+  color: green;
+  height: 400px;
+  width: 250px;
+  overflow: scroll;
+  z-index: 1090;
+  position: relative;
+  border: 1px black solid;
 }
+
 .cart-items {
   background-color: gray;
 }

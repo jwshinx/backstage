@@ -4,7 +4,7 @@ import styles from './CollectionItemComponent.module.css'
 
 export default function CollectionItemComponent(props: any) {
   // const { item } = props
-  console.log(`+++> CIC props:`, props)
+  // console.log(`+++> CIC props:`, props)
   const { name, price, imageUrl } = props
 
   return (
