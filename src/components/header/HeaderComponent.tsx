@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { auth } from '../../firebase/firebase.utils'
 import Logo from '../../assets/radio_black_24dp.svg'
 import CartIconComponent from '../cart-icon/CartIconComponent'
+import CartDropdownComponent from '../cart-dropdown/CartDropdownComponent'
 
 import styles from './HeaderComponent.module.css'
 
@@ -57,6 +58,9 @@ export default function HeaderComponent(props: any) {
             )}
             <div className="col-sm-auto">
               <CartIconComponent />
+            </div>
+            <div className="col-sm-auto">
+              <CartDropdownComponent />
             </div>
           </div>
         </div>
