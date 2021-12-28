@@ -17,15 +17,15 @@ export const createUserProfileDocument = async (
 ) => {
   if (!userAuth) return
 
-  console.log(`+++> firebase createUserProfileDocument userAuth:`, userAuth)
-  console.log(
-    `+++> firebase createUserProfileDocument additionalData:`,
-    additionalData
-  )
+  // console.log(`+++> firebase createUserProfileDocument userAuth:`, userAuth)
+  // console.log(
+  //   `+++> firebase createUserProfileDocument additionalData:`,
+  //   additionalData
+  // )
   const userRef = firestore.doc(`users/${userAuth.uid}`)
   // const userRef = firestore.doc(`users/slkdjflskjdfsdlkjf`)
   const snapShot = await userRef.get()
-  console.log(`+++> firebase createUserProfileDocument 10:`, snapShot)
+  // console.log(`+++> firebase createUserProfileDocument 10:`, snapShot)
 
   if (!snapShot.exists) {
     const { displayName, email } = userAuth

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
@@ -52,7 +52,17 @@ export const App = () => {
           <Switch>
             <Route exact path="/" component={HomepageComponent} />
             <Route exact path="/shop" component={ShopPageComponent} />
-            <Route exact path="/signin" component={SignInPageComponent} />
+            <Route
+              path="/signin"
+              exact
+              render={() =>
+                currentUser && currentUser.currentUser ? (
+                  <Redirect to="/" />
+                ) : (
+                  <SignInPageComponent />
+                )
+              }
+            />
           </Switch>
         </div>
       </div>

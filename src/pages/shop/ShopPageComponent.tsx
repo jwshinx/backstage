@@ -182,8 +182,8 @@ const SHOP_DATA = {
 }
 
 export default function ShopPageComponent() {
-  console.log(`+++> ShopPageComponent SHOP_DATA:`, SHOP_DATA)
-  console.log(`+++> ShopPageComponent SHOP_DATA keys:`, Object.keys(SHOP_DATA))
+  // console.log(`+++> ShopPageComponent SHOP_DATA:`, SHOP_DATA)
+  // console.log(`+++> ShopPageComponent SHOP_DATA keys:`, Object.keys(SHOP_DATA))
 
   return (
     <div className={styles.shop}>
