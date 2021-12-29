@@ -2,7 +2,17 @@ import React from 'react'
 
 import styles from './CollectionItemComponent.module.css'
 
-export default function CollectionItemComponent(props: any) {
+import AddToCartButtonComponent from '../../ui/button/AddToCartButtonComponent'
+
+interface CollectionItemComponentProps {
+  name: string
+  imageUrl: string
+  price: number
+}
+
+export default function CollectionItemComponent(
+  props: CollectionItemComponentProps
+) {
   // const { item } = props
   // console.log(`+++> CIC props:`, props)
   const { name, price, imageUrl } = props
@@ -18,6 +28,9 @@ export default function CollectionItemComponent(props: any) {
         <span className={styles.name}>{name}</span>
         <span className={styles.price}>{price}</span>
       </div>
+      <AddToCartButtonComponent isCollectionItem>
+        Add to cart
+      </AddToCartButtonComponent>
     </div>
   )
 }
