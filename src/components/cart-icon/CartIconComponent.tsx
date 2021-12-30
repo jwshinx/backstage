@@ -1,16 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import styles from './CartIconComponent.module.css'
 import Icon from '../../assets/shopping-bag.svg'
+import { CartContext } from '../../providers/CartProvider'
 
-// cartIconChangeHandler
-interface CartIconComponentProps {
-  cartIconClickHandler: any
-}
-
-export default function CartIconComponent(props: CartIconComponentProps) {
-  const { cartIconClickHandler } = props
-  // console.log(`+++> CIC 0 props:`, props)
+// export default function CartIconComponent() {
+export default function CartIconComponent(props: Record<string, unknown>) {
+  // const { cartIconClickHandler } = props
+  const { toggleHidden } = useContext(CartContext)
+  console.log(`+++> CIC 0 props:`, props)
   // const cartIconChangeHandler = () => {
   //   console.log(`+++> CIC cartIconChangeHandler 0`)
   // }
@@ -18,7 +16,7 @@ export default function CartIconComponent(props: CartIconComponentProps) {
   return (
     <div
       className={styles['cart-icon']}
-      onClick={cartIconClickHandler}
+      onClick={toggleHidden}
       aria-hidden="true"
     >
       <div className="logo">

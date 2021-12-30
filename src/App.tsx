@@ -3,8 +3,9 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
-import CartContext from './store/cart-context'
+// import CartContext from './store/cart-context'
 import AuthContext from './store/auth-context'
+import CartProvider from './providers/CartProvider'
 import HeaderComponent from './components/header/HeaderComponent'
 import HomepageComponent from './pages/homepage/HomepageComponent'
 import ShopPageComponent from './pages/shop/ShopPageComponent'
@@ -13,7 +14,7 @@ import { auth, createUserProfileDocument } from '../src/firebase/firebase.utils'
 
 export const App = () => {
   const [currentUser, setCurrentUser] = useState<any | null>(null)
-  const [cartItems, setCartItems] = useState<number[]>([])
+  // const [cartItems, setCartItems] = useState<number[]>([])
 
   // let authSubscription
   useEffect(() => {
@@ -42,28 +43,22 @@ export const App = () => {
     }
   }, [])
 
-  const onAddToCartClickHandler = () => {
-    console.log(`+++> App onAddToCartClickHandler clicked 0!`)
-    // console.log(`+++> App onAddToCartClickHandler price:`, price)
-    setCartItems([9898])
-    console.log(`+++> App onAddToCartClickHandler clicked 1!`)
-  }
+  // const onAddToCartClickHandler = () => {
+  //   console.log(`+++> App onAddToCartClickHandler clicked 0!`)
+  //   // console.log(`+++> App onAddToCartClickHandler price:`, price)
+  //   setCartItems([9898])
+  //   console.log(`+++> App onAddToCartClickHandler clicked 1!`)
+  // }
 
   console.log(`+++> App useEffect 1a   currentUser:`, currentUser)
 
   return (
-    <CartContext.Provider
-      value={{
-        cartItems: cartItems,
-        clickHandler: onAddToCartClickHandler,
-      }}
-    >
+    <CartProvider>
       <AuthContext.Provider value={{ user: currentUser }}>
         <div className="container">
           <div className="col-12">
             <div className="row mt-3 mb-3">
-              <HeaderComponent currentUser={currentUser} />
-              <span>xxx {cartItems} xxx</span>
+              <HeaderComponent />
             </div>
 
             <div className="row mt-3 mb-3">
@@ -86,6 +81,6 @@ export const App = () => {
           </div>
         </div>
       </AuthContext.Provider>
-    </CartContext.Provider>
+    </CartProvider>
   )
 }

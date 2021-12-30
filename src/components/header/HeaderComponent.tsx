@@ -1,22 +1,27 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { auth } from '../../firebase/firebase.utils'
 import Logo from '../../assets/radio_black_24dp.svg'
 import CartIconComponent from '../cart-icon/CartIconComponent'
 import CartDropdownComponent from '../cart-dropdown/CartDropdownComponent'
 
-import CartContext from '../../store/cart-context'
+// import CartContext from '../../store/cart-context'
+import { CartContext } from '../../providers/CartProvider'
 import AuthContext from '../../store/auth-context'
 
 import styles from './HeaderComponent.module.css'
 
-export default function HeaderComponent(props: any) {
+export default function HeaderComponent() {
   const cartCtx: any = useContext(CartContext)
   const authCtx: any = useContext(AuthContext)
-  const [showCart, setShowCart] = useState(false)
+  // const [showCart, setShowCart] = useState(false)
 
-  console.log(`+++> HeaderComponent props:`, props)
-  console.log(`+++> HeaderComponent cartCtx:`, cartCtx)
+  const { hidden } = cartCtx
+
+  // console.log(`+++> HeaderComponent props:`, props)
+  // console.log(`+++> HeaderComponent cartCtx:`, cartCtx)
+  // console.log(`+++> HeaderComponent hidden:`, hidden)
+  // console.log(`+++> HeaderComponent showCart:`, showCart)
 
   let loggedInUser = null
   if (authCtx && authCtx.user && authCtx.user.currentUser) {
@@ -29,9 +34,9 @@ export default function HeaderComponent(props: any) {
     console.log(`+++> HeaderComponent authCtx.user.currentUser is undefined`)
   }
 
-  const cartIconClickHandler = () => {
-    setShowCart((prevState) => !prevState)
-  }
+  // const cartIconClickHandler = () => {
+  //   setShowCart((prevState) => !prevState)
+  // }
 
   return (
     <div className="ui secondary pointing menu">
@@ -70,12 +75,17 @@ export default function HeaderComponent(props: any) {
               </div>
             )}
             <div className="col-sm-auto">
-              <CartIconComponent cartIconClickHandler={cartIconClickHandler} />
-              {showCart && (
+              <CartIconComponent />
+              {hidden ? null : (
                 <div className={`${styles['cart-dropdown-area']}`}>
                   <CartDropdownComponent />
                 </div>
               )}
+              {/*showCart && (
+                <div className={`${styles['cart-dropdown-area']}`}>
+                  <CartDropdownComponent />
+                </div>
+              )*/}
             </div>
           </div>
         </div>
