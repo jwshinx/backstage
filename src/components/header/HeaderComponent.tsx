@@ -5,11 +5,7 @@ import Logo from '../../assets/radio_black_24dp.svg'
 import CartIconComponent from '../cart-icon/CartIconComponent'
 import CartDropdownComponent from '../cart-dropdown/CartDropdownComponent'
 
-/* eslint-disable */
-// @ts-ignore
 import CartContext from '../../store/cart-context'
-/* eslint-disable */
-// @ts-ignore
 import AuthContext from '../../store/auth-context'
 
 import styles from './HeaderComponent.module.css'

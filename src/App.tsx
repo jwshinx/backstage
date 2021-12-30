@@ -3,12 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
-/* eslint-disable */
-// @ts-ignore
 import CartContext from './store/cart-context'
-
-/* eslint-disable */
-// @ts-ignore
 import AuthContext from './store/auth-context'
 import HeaderComponent from './components/header/HeaderComponent'
 import HomepageComponent from './pages/homepage/HomepageComponent'
