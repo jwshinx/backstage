@@ -8,24 +8,29 @@ import CartDropdownComponent from '../cart-dropdown/CartDropdownComponent'
 /* eslint-disable */
 // @ts-ignore
 import CartContext from '../../store/cart-context'
+/* eslint-disable */
+// @ts-ignore
+import AuthContext from '../../store/auth-context'
 
 import styles from './HeaderComponent.module.css'
 
 export default function HeaderComponent(props: any) {
-  const ctx: any = useContext(CartContext)
+  const cartCtx: any = useContext(CartContext)
+  const authCtx: any = useContext(AuthContext)
   const [showCart, setShowCart] = useState(false)
 
   console.log(`+++> HeaderComponent props:`, props)
+  console.log(`+++> HeaderComponent cartCtx:`, cartCtx)
 
   let loggedInUser = null
-  if (ctx && ctx.user && ctx.user.currentUser) {
+  if (authCtx && authCtx.user && authCtx.user.currentUser) {
     console.log(
-      `+++> HeaderComponent ctx.user.currentUser:`,
-      ctx.user.currentUser
+      `+++> HeaderComponent authCtx.user.currentUser:`,
+      authCtx.user.currentUser
     )
-    loggedInUser = ctx.user.currentUser
+    loggedInUser = authCtx.user.currentUser
   } else {
-    console.log(`+++> HeaderComponent ctx.user.currentUser is undefined`)
+    console.log(`+++> HeaderComponent authCtx.user.currentUser is undefined`)
   }
 
   const cartIconClickHandler = () => {
