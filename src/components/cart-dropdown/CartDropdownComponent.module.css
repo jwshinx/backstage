@@ -1,16 +1,37 @@
 .cart-dropdown {
-  background-color: white;
+  /* background-color: white;
   color: green;
   height: 400px;
   width: 250px;
   overflow: scroll;
   z-index: 1090;
+  border: 1px black solid; */
+
   position: relative;
-  border: 1px black solid;
+  /* position: absolute; */
+  width: 240px;
+  height: 340px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid black;
+  background-color: white;
+  /* top: 90px;
+  right: 40px; */
+  z-index: 1090;
+}
+
+.empty-message {
+  font-size: 18px;
+  margin: 50px auto;
 }
 
 .cart-items {
-  background-color: gray;
+  /* background-color: gray; */
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
 }
 
 .cart-button-area {
