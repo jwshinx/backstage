@@ -13,6 +13,7 @@ import { auth, createUserProfileDocument } from '../src/firebase/firebase.utils'
 
 export const App = () => {
   const [currentUser, setCurrentUser] = useState<any | null>(null)
+  const [cartItems, setCartItems] = useState<number[]>([])
 
   // let authSubscription
   useEffect(() => {
@@ -41,13 +42,20 @@ export const App = () => {
     }
   }, [])
 
+  const onAddToCartClickHandler = (price: number) => {
+    console.log(`+++> App onAddToCartClickHandler clicked 0!`)
+    console.log(`+++> App onAddToCartClickHandler price:`, price)
+    setCartItems([price])
+    console.log(`+++> App onAddToCartClickHandler clicked 1!`)
+  }
+
   console.log(`+++> App useEffect 1a   currentUser:`, currentUser)
 
   return (
     <CartContext.Provider
       value={{
-        color: 'red',
-        city: 'florence',
+        cartItems: cartItems,
+        clickHandler: onAddToCartClickHandler,
       }}
     >
       <AuthContext.Provider value={{ user: currentUser }}>
@@ -55,6 +63,7 @@ export const App = () => {
           <div className="col-12">
             <div className="row mt-3 mb-3">
               <HeaderComponent currentUser={currentUser} />
+              <span>xxx {cartItems} xxx</span>
             </div>
 
             <div className="row mt-3 mb-3">
