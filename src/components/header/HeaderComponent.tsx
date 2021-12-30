@@ -1,33 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { auth } from '../../firebase/firebase.utils'
 import Logo from '../../assets/radio_black_24dp.svg'
 import CartIconComponent from '../cart-icon/CartIconComponent'
 import CartDropdownComponent from '../cart-dropdown/CartDropdownComponent'
 
+/* eslint-disable */
+// @ts-ignore
+import CartContext from '../../store/cart-context'
+
 import styles from './HeaderComponent.module.css'
 
 export default function HeaderComponent(props: any) {
+  const ctx: any = useContext(CartContext)
   const [showCart, setShowCart] = useState(false)
 
   console.log(`+++> HeaderComponent props:`, props)
 
-  let currentUser = null
-  if (props.currentUser) {
-    currentUser = props.currentUser.currentUser
+  let loggedInUser = null
+  if (ctx && ctx.user && ctx.user.currentUser) {
+    console.log(
+      `+++> HeaderComponent ctx.user.currentUser:`,
+      ctx.user.currentUser
+    )
+    loggedInUser = ctx.user.currentUser
+  } else {
+    console.log(`+++> HeaderComponent ctx.user.currentUser is undefined`)
   }
 
   const cartIconClickHandler = () => {
-    // console.log(`+++> HC cartIconChangeHandler 0 showCart:`, showCart)
     setShowCart((prevState) => !prevState)
   }
 
-  // const { currentUser } = props.currentUser
-  console.log(`+++> HeaderComponent currentUser:`, currentUser)
-  // console.log(
-  //   `+++> HeaderComponent currentUser.displayName:`,
-  //   currentUser.currentUser.displayName
-  // )
   return (
     <div className="ui secondary pointing menu">
       <div className={`row ${styles.header}`}>
@@ -40,7 +44,7 @@ export default function HeaderComponent(props: any) {
         </div>
 
         <div className="col-3">
-          {currentUser && <span>{currentUser.displayName}</span>}
+          {loggedInUser && <span>{loggedInUser.displayName}</span>}
         </div>
 
         <div className={`col-8`}>
@@ -51,7 +55,7 @@ export default function HeaderComponent(props: any) {
             <div className="col-sm-auto">
               <Link to="/shop">CONTACT</Link>
             </div>
-            {currentUser ? (
+            {loggedInUser ? (
               <div
                 className={`col-sm-auto link-primary ${styles['sign-out']}`}
                 onClick={() => auth.signOut()}

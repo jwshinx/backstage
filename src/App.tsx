@@ -3,6 +3,9 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
+/* eslint-disable */
+// @ts-ignore
+import CartContext from './store/cart-context'
 import HeaderComponent from './components/header/HeaderComponent'
 import HomepageComponent from './pages/homepage/HomepageComponent'
 import ShopPageComponent from './pages/shop/ShopPageComponent'
@@ -42,30 +45,39 @@ export const App = () => {
   console.log(`+++> App useEffect 1a   currentUser:`, currentUser)
 
   return (
-    <div className="container">
-      <div className="col-12">
-        <div className="row mt-3 mb-3">
-          <HeaderComponent currentUser={currentUser} />
-        </div>
+    <CartContext.Provider
+      value={{
+        color: 'red',
+        city: 'florence',
+        isLoggedIn: false,
+        user: currentUser,
+      }}
+    >
+      <div className="container">
+        <div className="col-12">
+          <div className="row mt-3 mb-3">
+            <HeaderComponent currentUser={currentUser} />
+          </div>
 
-        <div className="row mt-3 mb-3">
-          <Switch>
-            <Route exact path="/" component={HomepageComponent} />
-            <Route exact path="/shop" component={ShopPageComponent} />
-            <Route
-              path="/signin"
-              exact
-              render={() =>
-                currentUser && currentUser.currentUser ? (
-                  <Redirect to="/" />
-                ) : (
-                  <SignInPageComponent />
-                )
-              }
-            />
-          </Switch>
+          <div className="row mt-3 mb-3">
+            <Switch>
+              <Route exact path="/" component={HomepageComponent} />
+              <Route exact path="/shop" component={ShopPageComponent} />
+              <Route
+                path="/signin"
+                exact
+                render={() =>
+                  currentUser && currentUser.currentUser ? (
+                    <Redirect to="/" />
+                  ) : (
+                    <SignInPageComponent />
+                  )
+                }
+              />
+            </Switch>
+          </div>
         </div>
       </div>
-    </div>
+    </CartContext.Provider>
   )
 }
