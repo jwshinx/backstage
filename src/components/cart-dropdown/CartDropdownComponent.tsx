@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import styles from './CartDropdownComponent.module.css'
 import CustomButton from '../../ui/button/CustomButtonComponent'
+import CartItemComponent from '../cart-item/CartItemComponent'
 import { CartContext } from '../../providers/CartProvider'
 
 export default function CartDropdownComponent() {
@@ -15,7 +16,7 @@ export default function CartDropdownComponent() {
           <p className={styles['empty-message']}>No items.</p>
         ) : (
           cartItems.map((item: any) => {
-            return <span key={item.id}>ooo ooo</span>
+            return <CartItemComponent key={item.id} item={item} />
           })
         )}
       </div>
