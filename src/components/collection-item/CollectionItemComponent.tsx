@@ -35,10 +35,7 @@ export default function CollectionItemComponent(
         <span className={styles.name}>{name}</span>
         <span className={styles.price}>{price}</span>
       </div>
-      <AddToCartButtonComponent
-        onClick={(item: any) => addItem(item)}
-        isCollectionItem
-      >
+      <AddToCartButtonComponent onClick={() => addItem(item)} isCollectionItem>
         Add to cart
       </AddToCartButtonComponent>
     </div>
