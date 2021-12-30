@@ -36,7 +36,6 @@ export default function CollectionItemComponent(
         <span className={styles.price}>{price}</span>
       </div>
       <AddToCartButtonComponent
-        value={price}
         onClickHandler={ctx!.clickHandler}
         isCollectionItem
       >

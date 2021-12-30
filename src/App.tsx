@@ -42,10 +42,10 @@ export const App = () => {
     }
   }, [])
 
-  const onAddToCartClickHandler = (price: number) => {
+  const onAddToCartClickHandler = () => {
     console.log(`+++> App onAddToCartClickHandler clicked 0!`)
-    console.log(`+++> App onAddToCartClickHandler price:`, price)
-    setCartItems([price])
+    // console.log(`+++> App onAddToCartClickHandler price:`, price)
+    setCartItems([9898])
     console.log(`+++> App onAddToCartClickHandler clicked 1!`)
   }
 
