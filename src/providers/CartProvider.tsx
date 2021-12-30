@@ -18,9 +18,16 @@ export const CartContext = createContext({
   cartItems: [],
   cartItemsCount: 0,
   toggleHidden: () => {},
-  addItem: () => {},
-  removeItem: () => {},
-  clearItemFromCart: () => {},
+  // addItem: (val: any) => {
+  //   console.log('+++> val:', val)
+  // },
+  addItem: (item: CartItem) => {
+    console.log(`+++> @joel CartProvider 0 addItem:`, item)
+    // @ts-ignore
+    setCartItems(addItemToCart(cartItems, item))
+  },
+  // removeItem: () => {},
+  // clearItemFromCart: () => {},
 })
 
 const CartProvider = ({ children }: { children: any }) => {
@@ -32,9 +39,12 @@ const CartProvider = ({ children }: { children: any }) => {
   const [cartItems, setCartItems] = useState([])
   const [cartItemsCount, setCartItemsCount] = useState(0)
 
-  const addItem = (item: CartItem) =>
+  const addItem = (item: CartItem) => {
+    console.log(`+++> @joel CartProvider 1 addItem item:`, item)
+    console.log(`+++> @joel CartProvider 1 addItem cartItems:`, cartItems)
     // @ts-ignore
     setCartItems(addItemToCart(cartItems, item))
+  }
 
   return (
     <CartContext.Provider
@@ -45,6 +55,8 @@ const CartProvider = ({ children }: { children: any }) => {
         // @ts-ignore
         addItem,
         cartItemsCount,
+        // removeItem,
+        // clearItemFromCart,
       }}
     >
       {children}{' '}

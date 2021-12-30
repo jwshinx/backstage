@@ -3,12 +3,10 @@ import React, { useContext } from 'react'
 import styles from './CollectionItemComponent.module.css'
 
 import AddToCartButtonComponent from '../../ui/button/AddToCartButtonComponent'
-import CartContext from '../../store/cart-context'
+import { CartContext } from '../../providers/CartProvider'
 
 interface CollectionItemComponentProps {
-  name: string
-  imageUrl: string
-  price: number
+  item: any
 }
 
 export default function CollectionItemComponent(
@@ -16,9 +14,11 @@ export default function CollectionItemComponent(
 ) {
   // const { item } = props
   // console.log(`+++> CIC props:`, props)
-  const { name, price, imageUrl } = props
+  const { item } = props
+  const { name, price, imageUrl } = item
+  const { addItem } = useContext(CartContext)
 
-  const ctx = useContext(CartContext)
+  // const ctx = useContext(CartContext)
 
   // const addToCartClickHandler = () => {
   //   console.log(`+++> CIC addToCartClickHandler clicked!`)
@@ -36,7 +36,7 @@ export default function CollectionItemComponent(
         <span className={styles.price}>{price}</span>
       </div>
       <AddToCartButtonComponent
-        onClickHandler={ctx!.clickHandler}
+        onClick={(item: any) => addItem(item)}
         isCollectionItem
       >
         Add to cart

@@ -12,6 +12,8 @@ export const addItemToCart = (
   cartItems: CartItem[],
   cartItemToAdd: CartItem
 ) => {
+  console.log(`+++> @joel cart addItemToCart cartItems:`, cartItems)
+  console.log(`+++> @joel cart addItemToCart cartItemToAdd:`, cartItemToAdd)
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === cartItemToAdd.id
   )

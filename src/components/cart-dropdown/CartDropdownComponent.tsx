@@ -6,6 +6,8 @@ import { CartContext } from '../../providers/CartProvider'
 export default function CartDropdownComponent() {
   const { cartItems } = useContext(CartContext)
 
+  console.log(`+++> CDC cartItems:`, cartItems)
+
   return (
     <div className={styles['cart-dropdown']}>
       <div className={styles['cart-items']}>
@@ -13,7 +15,7 @@ export default function CartDropdownComponent() {
           <p className={styles['empty-message']}>No items.</p>
         ) : (
           cartItems.map((item: any) => {
-            return <span key={item.name}>{item.name}</span>
+            return <span key={item.id}>ooo ooo</span>
           })
         )}
       </div>
