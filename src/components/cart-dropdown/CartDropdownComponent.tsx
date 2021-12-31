@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import styles from './CartDropdownComponent.module.css'
 import CustomButton from '../../ui/button/CustomButtonComponent'
 import CartItemComponent from '../cart-item/CartItemComponent'
@@ -6,6 +7,7 @@ import { CartContext } from '../../providers/CartProvider'
 import { CartItem } from '../../providers/cart'
 
 export default function CartDropdownComponent() {
+  const history = useHistory()
   const ctx = useContext(CartContext)
   let cartItems: Array<CartItem> = []
   if (ctx && ctx.cartItems !== undefined) {
@@ -24,8 +26,15 @@ export default function CartDropdownComponent() {
         )}
       </div>
       <div className={styles['cart-button-area']}>
-        <CustomButton isDisabled={false} type="submit">
-          CHECKOUT
+        <CustomButton
+          onClick={() => {
+            console.log(`+++> CDC checkout clicked!`)
+            history.push('/checkout')
+          }}
+          isDisabled={false}
+          type="button"
+        >
+          CHECKOUTT
         </CustomButton>
       </div>
     </div>

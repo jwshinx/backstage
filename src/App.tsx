@@ -10,6 +10,7 @@ import HeaderComponent from './components/header/HeaderComponent'
 import HomepageComponent from './pages/homepage/HomepageComponent'
 import ShopPageComponent from './pages/shop/ShopPageComponent'
 import SignInPageComponent from './pages/signin/SignInPageComponent'
+import CheckoutPageComponent from './pages/checkout/CheckoutPageComponent'
 import { auth, createUserProfileDocument } from '../src/firebase/firebase.utils'
 
 export const App = () => {
@@ -75,6 +76,11 @@ export const App = () => {
                       <SignInPageComponent />
                     )
                   }
+                />
+                <Route
+                  exact
+                  path="/checkout"
+                  component={CheckoutPageComponent}
                 />
               </Switch>
             </div>
