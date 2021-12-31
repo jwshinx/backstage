@@ -32,3 +32,16 @@
 .checkout-item .item-details .name {
   font-size: 16px;
 }
+.remove-btn {
+  margin-top: 22px;
+  height: 40px;
+  border: none;
+  background-color: white;
+  padding: 10;
+  cursor: pointer;
+}
+
+.remove-btn:active {
+  outline: none;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}

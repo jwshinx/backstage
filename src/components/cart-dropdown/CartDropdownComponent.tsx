@@ -34,7 +34,7 @@ export default function CartDropdownComponent() {
           isDisabled={false}
           type="button"
         >
-          CHECKOUTT
+          CHECKOUT
         </CustomButton>
       </div>
     </div>
