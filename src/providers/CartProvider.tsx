@@ -7,7 +7,7 @@ export interface CartContextInterface {
   cartItems: Array<CartItem>
   toggleHidden: () => void
   addItem: (item: CartItem) => void
-  // cartItemsCount: number
+  cartItemsCount: number
   removeItem: (item: CartItem) => void
 }
 
@@ -19,15 +19,32 @@ const CartProvider = ({ children }: { children: any }) => {
     setHidden(!hidden)
   }
   const [cartItems, setCartItems] = useState<Array<CartItem>>([])
-  // const [cartItemsCount, setCartItemsCount] = useState(0)
+  const [cartItemsCount, setCartItemsCount] = useState(0)
 
   const addItem = (item: CartItem) => {
-    setCartItems(addItemToCart(cartItems, item))
+    const updatedCart = addItemToCart(cartItems, item)
+    setCartItems(updatedCart)
+
+    let count = 0
+    updatedCart.map((item: CartItem) => {
+      if (item.quantity) {
+        count += item.quantity
+      }
+    })
+    setCartItemsCount(count)
   }
 
   const removeItem = (item: CartItem) => {
-    console.log(`+++> @joel CartProvider removeItem:`, item)
-    setCartItems(removeItemFromCart(cartItems, item))
+    const updatedCart = removeItemFromCart(cartItems, item)
+    setCartItems(updatedCart)
+
+    let count = 0
+    updatedCart.map((item: CartItem) => {
+      if (item.quantity) {
+        count += item.quantity
+      }
+    })
+    setCartItemsCount(count)
   }
 
   return (
@@ -37,7 +54,7 @@ const CartProvider = ({ children }: { children: any }) => {
         toggleHidden,
         cartItems,
         addItem,
-        // cartItemsCount,
+        cartItemsCount,
         removeItem,
         // clearItemFromCart,
       }}
