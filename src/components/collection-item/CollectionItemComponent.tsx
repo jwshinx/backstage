@@ -4,25 +4,23 @@ import styles from './CollectionItemComponent.module.css'
 
 import AddToCartButtonComponent from '../../ui/button/AddToCartButtonComponent'
 import { CartContext } from '../../providers/CartProvider'
+import { Item as CartItem } from '../../types/item'
 
 interface CollectionItemComponentProps {
-  item: any
+  item: CartItem
 }
 
 export default function CollectionItemComponent(
   props: CollectionItemComponentProps
 ) {
-  // const { item } = props
-  // console.log(`+++> CIC props:`, props)
   const { item } = props
   const { name, price, imageUrl } = item
-  const { addItem } = useContext(CartContext)
+  const ctx = useContext(CartContext)
 
-  // const ctx = useContext(CartContext)
-
-  // const addToCartClickHandler = () => {
-  //   console.log(`+++> CIC addToCartClickHandler clicked!`)
-  // }
+  let addItem: (item: CartItem) => void
+  if (ctx && ctx.addItem !== undefined) {
+    addItem = ctx.addItem
+  }
 
   return (
     <div className={styles['collection-item']}>

@@ -1,7 +1,5 @@
 // import React, { useState, useEffect, createContext } from 'react'
 import React, { useState, createContext } from 'react'
-
-// import { addItemToCart, removeItemFromCart } from './cart'
 import { addItemToCart } from './cart'
 
 interface CartItem {
@@ -12,37 +10,26 @@ interface CartItem {
   quantity?: number
 }
 
-/* eslint-disable */
-export const CartContext = createContext({
-  hidden: true,
-  cartItems: [],
-  cartItemsCount: 0,
-  toggleHidden: () => {},
-  // addItem: (val: any) => {
-  //   console.log('+++> val:', val)
-  // },
-  addItem: (item: CartItem) => {
-    console.log(`+++> @joel CartProvider 0 addItem:`, item)
-    // @ts-ignore
-    setCartItems(addItemToCart(cartItems, item))
-  },
-  // removeItem: () => {},
-  // clearItemFromCart: () => {},
-})
+export interface CartContextInterface {
+  hidden: boolean
+  cartItems: Array<CartItem>
+  toggleHidden: () => void
+  addItem: (item: CartItem) => void
+  // cartItemsCount: number
+  // removeItem:
+}
+
+export const CartContext = createContext<CartContextInterface | null>(null)
 
 const CartProvider = ({ children }: { children: any }) => {
   const [hidden, setHidden] = useState(true)
   const toggleHidden = () => {
-    console.log(`+++> CartProvider toggleHidden clicked!`)
     setHidden(!hidden)
   }
-  const [cartItems, setCartItems] = useState([])
-  const [cartItemsCount, setCartItemsCount] = useState(0)
+  const [cartItems, setCartItems] = useState<Array<CartItem>>([])
+  // const [cartItemsCount, setCartItemsCount] = useState(0)
 
   const addItem = (item: CartItem) => {
-    console.log(`+++> @joel CartProvider 1 addItem item:`, item)
-    console.log(`+++> @joel CartProvider 1 addItem cartItems:`, cartItems)
-    // @ts-ignore
     setCartItems(addItemToCart(cartItems, item))
   }
 
@@ -52,9 +39,8 @@ const CartProvider = ({ children }: { children: any }) => {
         hidden,
         toggleHidden,
         cartItems,
-        // @ts-ignore
         addItem,
-        cartItemsCount,
+        // cartItemsCount,
         // removeItem,
         // clearItemFromCart,
       }}

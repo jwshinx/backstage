@@ -3,11 +3,14 @@ import styles from './CartDropdownComponent.module.css'
 import CustomButton from '../../ui/button/CustomButtonComponent'
 import CartItemComponent from '../cart-item/CartItemComponent'
 import { CartContext } from '../../providers/CartProvider'
+import { Item as CartItem } from '../../types/item'
 
 export default function CartDropdownComponent() {
-  const { cartItems } = useContext(CartContext)
-
-  console.log(`+++> CDC cartItems:`, cartItems)
+  const ctx = useContext(CartContext)
+  let cartItems: Array<CartItem> = []
+  if (ctx && ctx.cartItems !== undefined) {
+    cartItems = ctx.cartItems
+  }
 
   return (
     <div className={styles['cart-dropdown']}>
@@ -15,7 +18,7 @@ export default function CartDropdownComponent() {
         {cartItems.length === 0 ? (
           <p className={styles['empty-message']}>No items.</p>
         ) : (
-          cartItems.map((item: any) => {
+          cartItems.map((item: CartItem) => {
             return <CartItemComponent key={item.id} item={item} />
           })
         )}
