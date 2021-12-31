@@ -20,26 +20,37 @@ export default function CheckoutItemComponent(
     removeItem = ctx.removeItem
   }
 
+  // <div className={`row justify-content-md-center`}>
   return (
-    <div className={styles['checkout-item']}>
-      <div className={styles['image-area']}>
-        <div className={styles['image-box']}>
+    <div className={`row my-3 ${styles['checkout-item']}`}>
+      <div className={`col-3 ${styles['image-area']}`}>
+        <div className={`${styles['image-box']}`}>
           <img src={imageUrl} alt="item" />
         </div>
       </div>
-      <div className={styles['item-details']}>
-        {name} - {quantity} - {price}
+      <div className={`col-3 py-4 ${styles['item-details']}`}>
+        <div className="row justify-content-center">{name}</div>
       </div>
-      <button
-        className={styles['remove-btn']}
-        onClick={() => {
-          console.log('+++> COC removeItem clicked!')
-          removeItem(item)
-        }}
-        type="button"
-      >
-        <img src={RemoveIcon} alt="remove-icon" />
-      </button>
+      <div className={`col-2 py-4 ${styles['item-details']}`}>
+        <div className="row justify-content-center">{quantity}</div>
+      </div>
+      <div className={`col-2 py-4 ${styles['item-details']}`}>
+        <div className="row justify-content-center">{price}</div>
+      </div>
+      <div className={`col-2 py-3`}>
+        <div className="row justify-content-center">
+          <button
+            className={`${styles['remove-btn']}`}
+            onClick={() => {
+              console.log('+++> COC removeItem clicked!')
+              removeItem(item)
+            }}
+            type="button"
+          >
+            <img src={RemoveIcon} alt="remove-icon" />
+          </button>
+        </div>
+      </div>
     </div>
   )
 }

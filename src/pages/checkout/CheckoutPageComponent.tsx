@@ -16,27 +16,34 @@ export default function CheckoutPageComponent() {
   console.log(`+++> @joel CheckoutPageComponent cartItems:`, cartItems)
 
   return (
-    <div className={styles['checkout']}>
-      <div className={styles['checkout-header']}>
-        <div className={styles['header-block']}>
-          <span>Product</span>
+    <div className="container">
+      <div className="row">
+        <div className="col-1"></div>
+        <div className={`col-10 ${styles['checkout']}`}>
+          <div className={`row ${styles['checkout-header']}`}>
+            <div className={`col-3 ${styles['header-block']}`}>
+              <div className="row justify-content-center">Product</div>
+            </div>
+            <div className={`col-3 ${styles['header-block']}`}>
+              <div className="row justify-content-center">Description</div>
+            </div>
+            <div className={`col-2 ${styles['header-block']}`}>
+              <div className="row justify-content-center">Quantity</div>
+            </div>
+            <div className={`col-2 ${styles['header-block']}`}>
+              <div className="row justify-content-center">Price</div>
+            </div>
+            <div className={`col-2 ${styles['header-block']}`}>
+              <div className="row justify-content-center">Remove</div>
+            </div>
+          </div>
+
+          {cartItems.map((item: CartItem) => {
+            return <CheckoutItemComponent item={item} key={item.id} />
+          })}
         </div>
-        <div className={styles['header-block']}>
-          <span>Description</span>
-        </div>
-        <div className={styles['header-block']}>
-          <span>Quantity</span>
-        </div>
-        <div className={styles['header-block']}>
-          <span>Price</span>
-        </div>
-        <div className={styles['header-block']}>
-          <span>Remove</span>
-        </div>
+        <div className="col-1"></div>
       </div>
-      {cartItems.map((item: CartItem) => {
-        return <CheckoutItemComponent item={item} key={item.id} />
-      })}
     </div>
   )
 }
