@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { CartContext } from '../../providers/CartProvider'
 import { CartItem } from '../../providers/cart'
+import CheckoutItemComponent from '../../components/checkout-item/CheckoutItemComponent'
 import styles from './CheckoutPageComponent.module.css'
 
 export default function CheckoutPageComponent() {
@@ -34,11 +35,7 @@ export default function CheckoutPageComponent() {
         </div>
       </div>
       {cartItems.map((item: CartItem) => {
-        return (
-          <div key={item.id}>
-            {item.name} - {item.quantity} - {item.price}
-          </div>
-        )
+        return <CheckoutItemComponent item={item} key={item.id} />
       })}
     </div>
   )
