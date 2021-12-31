@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { CartItem } from '../../providers/cart'
 import styles from './CheckoutItemComponent.module.css'
 import RemoveIcon from '../../assets/black_x.svg'
+import { CartContext } from '../../providers/CartProvider'
 
 interface CheckoutItemComponentProps {
   item: CartItem
@@ -10,7 +11,14 @@ interface CheckoutItemComponentProps {
 export default function CheckoutItemComponent(
   props: CheckoutItemComponentProps
 ) {
-  const { imageUrl, price, quantity, name } = props.item
+  const { item } = props
+  const { imageUrl, price, quantity, name } = item
+  const ctx = useContext(CartContext)
+
+  let removeItem: (item: CartItem) => void
+  if (ctx?.removeItem !== undefined) {
+    removeItem = ctx.removeItem
+  }
 
   return (
     <div className={styles['checkout-item']}>
@@ -25,7 +33,8 @@ export default function CheckoutItemComponent(
       <button
         className={styles['remove-btn']}
         onClick={() => {
-          console.log('+++> COC remove clicked!')
+          console.log('+++> COC removeItem clicked!')
+          removeItem(item)
         }}
         type="button"
       >
