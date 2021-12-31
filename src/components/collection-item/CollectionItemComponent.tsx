@@ -4,7 +4,7 @@ import styles from './CollectionItemComponent.module.css'
 
 import AddToCartButtonComponent from '../../ui/button/AddToCartButtonComponent'
 import { CartContext } from '../../providers/CartProvider'
-import { Item as CartItem } from '../../types/item'
+import { CartItem } from '../../providers/cart'
 
 interface CollectionItemComponentProps {
   item: CartItem

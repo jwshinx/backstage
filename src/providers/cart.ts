@@ -1,6 +1,4 @@
-// import { CartItem } from '../../../src/actions/index';
-
-interface CartItem {
+export interface CartItem {
   id: number
   imageUrl: string
   name: string

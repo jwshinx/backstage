@@ -1,10 +1,11 @@
 import React from 'react'
 import styles from './CartItemComponent.module.css'
+import { CartItem } from '../../providers/cart'
 
 export default function CartItemComponent({
   item: { imageUrl, price, name, quantity },
 }: {
-  item: any
+  item: CartItem
 }) {
   return (
     <div className={styles['cart-item']}>

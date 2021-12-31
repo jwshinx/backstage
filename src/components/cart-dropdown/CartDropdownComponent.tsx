@@ -3,7 +3,7 @@ import styles from './CartDropdownComponent.module.css'
 import CustomButton from '../../ui/button/CustomButtonComponent'
 import CartItemComponent from '../cart-item/CartItemComponent'
 import { CartContext } from '../../providers/CartProvider'
-import { Item as CartItem } from '../../types/item'
+import { CartItem } from '../../providers/cart'
 
 export default function CartDropdownComponent() {
   const ctx = useContext(CartContext)

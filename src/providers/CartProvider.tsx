@@ -1,14 +1,6 @@
 // import React, { useState, useEffect, createContext } from 'react'
 import React, { useState, createContext } from 'react'
-import { addItemToCart } from './cart'
-
-interface CartItem {
-  id: number
-  imageUrl: string
-  name: string
-  price: number
-  quantity?: number
-}
+import { addItemToCart, CartItem } from './cart'
 
 export interface CartContextInterface {
   hidden: boolean

@@ -2,8 +2,8 @@ import React from 'react'
 
 import styles from './AddToCartButtonComponent.module.css'
 import collectionItemComponentStyles from '../../components/collection-item/CollectionItemComponent.module.css'
+import { CartItem } from '../../providers/cart'
 
-// // onClick={() => addItem(item)}
 export default function AddToCartButtonComponent({
   children,
   isCollectionItem,
@@ -12,8 +12,7 @@ export default function AddToCartButtonComponent({
 {
   children: any
   isCollectionItem: boolean
-  // onClickHandler: (value: number) => void
-  onClick: (item: any) => void
+  onClick: (item: CartItem) => void
   // otherProps: any
 }) {
   const buttonStyles = `
