@@ -40,9 +40,9 @@ export default function CheckoutItemComponent(
       </div>
       <div className={`col-2 py-4 ${styles['item-details']}`}>
         <div className="row justify-content-center">
-          <div className="col-3 bg-secondary">
+          <div className="col-3">
             <button
-              className={`${styles['remove-btn']}`}
+              className={`${styles['action-btn']} ${styles['subtract-btn']}`}
               onClick={() => {
                 console.log('+++> COC subtractIcon clicked!')
                 removeItem(item)
@@ -55,9 +55,9 @@ export default function CheckoutItemComponent(
 
           <div className="col-3">{quantity}</div>
 
-          <div className="col-3 bg-warning">
+          <div className="col-3">
             <button
-              className={`${styles['remove-btn']}`}
+              className={`${styles['action-btn']} ${styles['add-btn']}`}
               onClick={() => {
                 console.log('+++> COC addIcon clicked!')
                 addItem(item)
@@ -75,7 +75,7 @@ export default function CheckoutItemComponent(
       <div className={`col-2 py-3`}>
         <div className="row justify-content-center">
           <button
-            className={`${styles['remove-btn']}`}
+            className={`${styles['action-btn']}`}
             onClick={() => {
               console.log('+++> COC removeItem clicked!')
               removeItem(item)

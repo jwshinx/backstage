@@ -37,16 +37,24 @@
 .checkout-item .item-details .name {
   /* font-size: 16px; */
 }
-.remove-btn {
+
+.add-btn,
+.subtract-btn {
+  /* background-color: brown; */
+  margin-top: -25px;
+  margin-left: -10px;
+}
+
+.action-btn {
   /* margin-top: 18px; */
-  height: 40px;
+  height: 35px;
   border: none;
-  background-color: white;
-  padding: 10;
+  /* background-color: yellow; */
+  /* padding: 10; */
   cursor: pointer;
 }
 
-.remove-btn:active {
+.action-btn:active {
   outline: none;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
