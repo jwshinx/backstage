@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import { CartItem } from '../../providers/cart'
 import styles from './CheckoutItemComponent.module.css'
 import RemoveIcon from '../../assets/black_x.svg'
+import AddIcon from '../../assets/add.svg'
+import SubtractIcon from '../../assets/subtract.svg'
 import { CartContext } from '../../providers/CartProvider'
 
 interface CheckoutItemComponentProps {
@@ -20,6 +22,11 @@ export default function CheckoutItemComponent(
     removeItem = ctx.removeItem
   }
 
+  let addItem: (item: CartItem) => void
+  if (ctx && ctx.addItem !== undefined) {
+    addItem = ctx.addItem
+  }
+
   // <div className={`row justify-content-md-center`}>
   return (
     <div className={`row my-3 ${styles['checkout-item']}`}>
@@ -32,7 +39,35 @@ export default function CheckoutItemComponent(
         <div className="row justify-content-center">{name}</div>
       </div>
       <div className={`col-2 py-4 ${styles['item-details']}`}>
-        <div className="row justify-content-center">{quantity}</div>
+        <div className="row justify-content-center">
+          <div className="col-3 bg-secondary">
+            <button
+              className={`${styles['remove-btn']}`}
+              onClick={() => {
+                console.log('+++> COC subtractIcon clicked!')
+                removeItem(item)
+              }}
+              type="button"
+            >
+              <img src={SubtractIcon} alt="subtract-icon" />
+            </button>
+          </div>
+
+          <div className="col-3">{quantity}</div>
+
+          <div className="col-3 bg-warning">
+            <button
+              className={`${styles['remove-btn']}`}
+              onClick={() => {
+                console.log('+++> COC addIcon clicked!')
+                addItem(item)
+              }}
+              type="button"
+            >
+              <img src={AddIcon} alt="add-icon" />
+            </button>
+          </div>
+        </div>
       </div>
       <div className={`col-2 py-4 ${styles['item-details']}`}>
         <div className="row justify-content-center">{price}</div>
