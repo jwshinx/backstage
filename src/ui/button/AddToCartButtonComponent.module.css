@@ -1,4 +1,39 @@
-.add-to-cart-button {
+.xxx-button {
+  color: green;
+}
+
+.yyy {
+  color: orange;
+}
+
+.collection-item {
+  width: 22vw;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  align-items: center;
+  position: relative;
+  /* background-color: orange; */
+}
+
+.collection-item:hover .actionbutton {
+  opacity: 0.85;
+  display: flex;
+  background-color: purple;
+  color: white;
+  border: 1px solid black;
+  display: none;
+}
+
+.collection-item:hover .actionbutton:hover {
+  opacity: 0.85;
+  display: flex;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+.addtocartbutton {
   height: 50px;
   letter-spacing: 0.5px;
   line-height: 50px;
@@ -17,10 +52,11 @@
   opacity: 70%;
   position: absolute;
   top: 255px;
+  /* display: none; */
 }
 
-.add-to-cart-button:hover {
-  background-color: white;
+.addtocartbutton:hover {
+  background-color: green;
   color: black;
   border: 1px solid black;
   opacity: 0.85;

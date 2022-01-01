@@ -14,7 +14,7 @@
   background-position: center;
   margin-bottom: 5px;
 }
-.collection-item .collection-item-button {
+.collection-item .actionbutton {
   width: 80%;
   opacity: 0.7;
   position: absolute;
@@ -25,15 +25,15 @@
   opacity: 0.8;
 }
 
-.collection-item:hover .collection-item-button {
+.collection-item:hover .actionbutton {
   opacity: 0.85;
   display: flex;
-  background-color: black;
+  background-color: purple;
   color: white;
   border: 1px solid black;
 }
 
-.collection-item:hover .collection-item-button:hover {
+.collection-item:hover .actionbutton:hover {
   opacity: 0.85;
   display: flex;
   background-color: white;

@@ -5,6 +5,8 @@ import RemoveIcon from '../../assets/black_x.svg'
 import AddIcon from '../../assets/add.svg'
 import SubtractIcon from '../../assets/subtract.svg'
 import { CartContext } from '../../providers/CartProvider'
+// import AddToCartButtonComponent from '../../ui/button/AddToCartButtonComponent'
+import AddToCartButtonComponent from '../../ui/button/AddToCartButtonComponent'
 
 interface CheckoutItemComponentProps {
   item: CartItem
@@ -49,7 +51,6 @@ export default function CheckoutItemComponent(
             <button
               className={`${styles['action-btn']} ${styles['subtract-btn']}`}
               onClick={() => {
-                console.log('+++> COC subtractIcon clicked!')
                 removeQuantity(item)
               }}
               type="button"
@@ -64,7 +65,6 @@ export default function CheckoutItemComponent(
             <button
               className={`${styles['action-btn']} ${styles['add-btn']}`}
               onClick={() => {
-                console.log('+++> COC addIcon clicked!')
                 addQuantity(item)
               }}
               type="button"
@@ -79,16 +79,13 @@ export default function CheckoutItemComponent(
       </div>
       <div className={`col-2 py-3`}>
         <div className="row justify-content-center">
-          <button
-            className={`${styles['action-btn']}`}
-            onClick={() => {
-              console.log('+++> COC clearItemFromCart clicked!')
-              clearItem(item)
-            }}
-            type="button"
+          <AddToCartButtonComponent
+            isCollectionItem={false}
+            styleArray={['add-to-cart-button']}
+            onClick={() => clearItem(item)}
           >
             <img src={RemoveIcon} alt="remove-icon" />
-          </button>
+          </AddToCartButtonComponent>
         </div>
       </div>
     </div>
