@@ -31,7 +31,7 @@ export default function CollectionItemComponent(
 
       <div className={styles['collection-footer']}>
         <span className={styles.name}>{name}</span>
-        <span className={styles.price}>{price}</span>
+        <span className={styles.price}>${price}</span>
       </div>
       <AddToCartButtonComponent
         onClick={() => addQuantity(item)}

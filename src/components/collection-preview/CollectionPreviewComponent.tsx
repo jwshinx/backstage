@@ -11,8 +11,6 @@ interface CollectionPreviewComponentProps {
 export default function CollectionPreviewComponent(
   props: CollectionPreviewComponentProps
 ) {
-  console.log(`+++> CPC props:`, props)
-
   const { title, items } = props
   return (
     <div className={styles['shop-preview']}>
@@ -20,7 +18,7 @@ export default function CollectionPreviewComponent(
       <div className={styles.preview}>
         {items
           .filter((item: Item, idx: number) => idx < 4)
-          .map((item: any) => (
+          .map((item: Item) => (
             <CollectionItemComponent key={item.id} item={item} />
           ))}
       </div>

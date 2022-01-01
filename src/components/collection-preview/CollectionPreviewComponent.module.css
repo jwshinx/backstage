@@ -1,5 +1,5 @@
 .shop-preview {
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   margin-bottom: 30px;
   width: 100%;
@@ -12,6 +12,6 @@
 .shop-preview .preview {
   /* width: 100%; */
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   grid-gap: 10px;
 }
