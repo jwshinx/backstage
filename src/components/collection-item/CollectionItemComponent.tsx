@@ -17,9 +17,9 @@ export default function CollectionItemComponent(
   const { name, price, imageUrl } = item
   const ctx = useContext(CartContext)
 
-  let addItem: (item: CartItem) => void
-  if (ctx && ctx.addItem !== undefined) {
-    addItem = ctx.addItem
+  let addQuantity: (item: CartItem) => void
+  if (ctx && ctx.addQuantity !== undefined) {
+    addQuantity = ctx.addQuantity
   }
 
   return (
@@ -33,7 +33,10 @@ export default function CollectionItemComponent(
         <span className={styles.name}>{name}</span>
         <span className={styles.price}>{price}</span>
       </div>
-      <AddToCartButtonComponent onClick={() => addItem(item)} isCollectionItem>
+      <AddToCartButtonComponent
+        onClick={() => addQuantity(item)}
+        isCollectionItem
+      >
         Add to cart
       </AddToCartButtonComponent>
     </div>

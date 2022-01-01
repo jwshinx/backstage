@@ -1,14 +1,20 @@
 // import React, { useState, useEffect, createContext } from 'react'
 import React, { useState, createContext } from 'react'
-import { addItemToCart, removeItemFromCart, CartItem } from './cart'
+import {
+  addQuantityToCart,
+  removeQuantityFromCart,
+  clearItemFromCart,
+  CartItem,
+} from './cart'
 
 export interface CartContextInterface {
   hidden: boolean
   cartItems: Array<CartItem>
   toggleHidden: () => void
-  addItem: (item: CartItem) => void
+  addQuantity: (item: CartItem) => void
   cartItemsCount: number
-  removeItem: (item: CartItem) => void
+  removeQuantity: (item: CartItem) => void
+  clearItem: (item: CartItem) => void
 }
 
 export const CartContext = createContext<CartContextInterface | null>(null)
@@ -21,8 +27,8 @@ const CartProvider = ({ children }: { children: any }) => {
   const [cartItems, setCartItems] = useState<Array<CartItem>>([])
   const [cartItemsCount, setCartItemsCount] = useState(0)
 
-  const addItem = (item: CartItem) => {
-    const updatedCart = addItemToCart(cartItems, item)
+  const addQuantity = (item: CartItem) => {
+    const updatedCart = addQuantityToCart(cartItems, item)
     setCartItems(updatedCart)
 
     let count = 0
@@ -34,8 +40,21 @@ const CartProvider = ({ children }: { children: any }) => {
     setCartItemsCount(count)
   }
 
-  const removeItem = (item: CartItem) => {
-    const updatedCart = removeItemFromCart(cartItems, item)
+  const removeQuantity = (item: CartItem) => {
+    const updatedCart = removeQuantityFromCart(cartItems, item)
+    setCartItems(updatedCart)
+
+    let count = 0
+    updatedCart.map((item: CartItem) => {
+      if (item.quantity) {
+        count += item.quantity
+      }
+    })
+    setCartItemsCount(count)
+  }
+
+  const clearItem = (item: CartItem) => {
+    const updatedCart = clearItemFromCart(cartItems, item)
     setCartItems(updatedCart)
 
     let count = 0
@@ -53,10 +72,10 @@ const CartProvider = ({ children }: { children: any }) => {
         hidden,
         toggleHidden,
         cartItems,
-        addItem,
+        addQuantity,
         cartItemsCount,
-        removeItem,
-        // clearItemFromCart,
+        removeQuantity,
+        clearItem,
       }}
     >
       {children}{' '}

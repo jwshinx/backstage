@@ -17,14 +17,19 @@ export default function CheckoutItemComponent(
   const { imageUrl, price, quantity, name } = item
   const ctx = useContext(CartContext)
 
-  let removeItem: (item: CartItem) => void
-  if (ctx?.removeItem !== undefined) {
-    removeItem = ctx.removeItem
+  let removeQuantity: (item: CartItem) => void
+  if (ctx?.removeQuantity !== undefined) {
+    removeQuantity = ctx.removeQuantity
   }
 
-  let addItem: (item: CartItem) => void
-  if (ctx && ctx.addItem !== undefined) {
-    addItem = ctx.addItem
+  let addQuantity: (item: CartItem) => void
+  if (ctx && ctx.addQuantity !== undefined) {
+    addQuantity = ctx.addQuantity
+  }
+
+  let clearItem: (item: CartItem) => void
+  if (ctx && ctx.clearItem !== undefined) {
+    clearItem = ctx.clearItem
   }
 
   // <div className={`row justify-content-md-center`}>
@@ -45,7 +50,7 @@ export default function CheckoutItemComponent(
               className={`${styles['action-btn']} ${styles['subtract-btn']}`}
               onClick={() => {
                 console.log('+++> COC subtractIcon clicked!')
-                removeItem(item)
+                removeQuantity(item)
               }}
               type="button"
             >
@@ -60,7 +65,7 @@ export default function CheckoutItemComponent(
               className={`${styles['action-btn']} ${styles['add-btn']}`}
               onClick={() => {
                 console.log('+++> COC addIcon clicked!')
-                addItem(item)
+                addQuantity(item)
               }}
               type="button"
             >
@@ -77,8 +82,8 @@ export default function CheckoutItemComponent(
           <button
             className={`${styles['action-btn']}`}
             onClick={() => {
-              console.log('+++> COC removeItem clicked!')
-              removeItem(item)
+              console.log('+++> COC clearItemFromCart clicked!')
+              clearItem(item)
             }}
             type="button"
           >

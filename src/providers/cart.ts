@@ -6,7 +6,22 @@ export interface CartItem {
   quantity?: number
 }
 
-export const addItemToCart = (
+export const clearItemFromCart = (
+  cartItems: CartItem[],
+  cartItemToRemove: CartItem
+) => {
+  const existingCartItem = cartItems.find(
+    (cartItem) => cartItem.id === cartItemToRemove.id
+  )
+
+  if (existingCartItem) {
+    return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id)
+  }
+
+  return cartItems
+}
+
+export const addQuantityToCart = (
   cartItems: CartItem[],
   cartItemToAdd: CartItem
 ) => {
@@ -25,7 +40,7 @@ export const addItemToCart = (
   return [...cartItems, { ...cartItemToAdd, quantity: 1 }]
 }
 
-export const removeItemFromCart = (
+export const removeQuantityFromCart = (
   cartItems: CartItem[],
   cartItemToRemove: CartItem
 ) => {
