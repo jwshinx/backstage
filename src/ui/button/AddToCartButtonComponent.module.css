@@ -2,6 +2,7 @@
   height: 35px;
   border: none;
   cursor: pointer;
+  background-color: #d3d3d3;
 }
 
 .removeitemfromcart:hover {
@@ -40,4 +41,25 @@
   border: 1px solid black;
   opacity: 0.85;
   display: flex;
+}
+
+.addbtn,
+.subtractbtn {
+  background-color: #d3d3d3;
+  height: 35px;
+  border: none;
+  cursor: pointer;
+  margin-top: -5px;
+  margin-left: -10px;
+}
+
+.addbtn:active,
+.subtractbtn:active {
+  outline: none;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.addbtn:hover,
+.subtractbtn:hover {
+  background-color: grey;
 }

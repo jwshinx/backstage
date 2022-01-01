@@ -48,29 +48,31 @@ export default function CheckoutItemComponent(
       <div className={`col-2 py-4 ${styles['item-details']}`}>
         <div className="row justify-content-center">
           <div className="col-3">
-            <button
-              className={`${styles['action-btn']} ${styles['subtract-btn']}`}
+            <AddToCartButtonComponent
+              // className={`${styles['action-btn']} ${styles['subtract-btn']}`}
+              styleArray={['actionbtn', 'subtractbtn']}
               onClick={() => {
                 removeQuantity(item)
               }}
-              type="button"
+              // type="button"
             >
               <img src={SubtractIcon} alt="subtract-icon" />
-            </button>
+            </AddToCartButtonComponent>
           </div>
 
           <div className="col-3">{quantity}</div>
 
           <div className="col-3">
-            <button
-              className={`${styles['action-btn']} ${styles['add-btn']}`}
+            <AddToCartButtonComponent
+              styleArray={['actionbtn', 'addbtn']}
+              // className={`${styles['action-btn']} ${styles['add-btn']}`}
               onClick={() => {
                 addQuantity(item)
               }}
-              type="button"
+              // type="button"
             >
               <img src={AddIcon} alt="add-icon" />
-            </button>
+            </AddToCartButtonComponent>
           </div>
         </div>
       </div>
