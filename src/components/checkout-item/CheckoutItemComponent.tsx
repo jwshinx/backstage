@@ -80,8 +80,7 @@ export default function CheckoutItemComponent(
       <div className={`col-2 py-3`}>
         <div className="row justify-content-center">
           <AddToCartButtonComponent
-            isCollectionItem={false}
-            styleArray={['add-to-cart-button']}
+            styleArray={['removeitemfromcart']}
             onClick={() => clearItem(item)}
           >
             <img src={RemoveIcon} alt="remove-icon" />

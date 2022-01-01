@@ -1,3 +1,18 @@
+.removeitemfromcart {
+  height: 35px;
+  border: none;
+  cursor: pointer;
+}
+
+.removeitemfromcart:hover {
+  background-color: grey;
+}
+
+.removeitemfromcart:active {
+  outline: none;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
 .addtocartbutton {
   height: 50px;
   letter-spacing: 0.5px;

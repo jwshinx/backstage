@@ -35,7 +35,6 @@ export default function CollectionItemComponent(
       </div>
       <AddToCartButtonComponent
         onClick={() => addQuantity(item)}
-        isCollectionItem
         styleArray={['addtocartbutton']}
       >
         Add to cart

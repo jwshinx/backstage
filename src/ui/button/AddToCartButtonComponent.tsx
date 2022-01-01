@@ -12,7 +12,6 @@ export default function AddToCartButtonComponent({
 }: // ...otherProps
 {
   children: any
-  isCollectionItem: boolean
   onClick: (item: CartItem) => void
   styleArray: Array<string>
   // otherProps: any
