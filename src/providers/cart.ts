@@ -67,3 +67,12 @@ export const calculateCartItemsCount = (cartItems: CartItem[]) => {
     return acc
   }, 0)
 }
+
+export const calculateTotalSpending = (cartItems: CartItem[]) => {
+  return cartItems.reduce((acc, current) => {
+    if (current.quantity && current.price) {
+      return acc + current.quantity * current.price
+    }
+    return acc
+  }, 0)
+}

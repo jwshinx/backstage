@@ -5,6 +5,7 @@ import {
   clearItemFromCart,
   CartItem,
   calculateCartItemsCount,
+  calculateTotalSpending,
 } from './cart'
 
 export interface CartContextInterface {
@@ -31,54 +32,22 @@ const CartProvider = ({ children }: { children: any }) => {
 
   useEffect(() => {
     setCartItemsCount(calculateCartItemsCount(cartItems))
+    setTotalSpending(calculateTotalSpending(cartItems))
   }, [cartItems])
 
   const addQuantity = (item: CartItem) => {
     const updatedCart = addQuantityToCart(cartItems, item)
     setCartItems(updatedCart)
-
-    // let count = 0
-    let spending = 0
-    updatedCart.map((item: CartItem) => {
-      if (item.quantity) {
-        // count += item.quantity
-        spending += item.price * item.quantity
-      }
-    })
-    // setCartItemsCount(count)
-    setTotalSpending(spending)
   }
 
   const removeQuantity = (item: CartItem) => {
     const updatedCart = removeQuantityFromCart(cartItems, item)
     setCartItems(updatedCart)
-
-    // let count = 0
-    let spending = 0
-    updatedCart.map((item: CartItem) => {
-      if (item.quantity) {
-        // count += item.quantity
-        spending += item.price * item.quantity
-      }
-    })
-    // setCartItemsCount(count)
-    setTotalSpending(spending)
   }
 
   const clearItem = (item: CartItem) => {
     const updatedCart = clearItemFromCart(cartItems, item)
     setCartItems(updatedCart)
-
-    // let count = 0
-    let spending = 0
-    updatedCart.map((item: CartItem) => {
-      if (item.quantity) {
-        // count += item.quantity
-        spending += item.price * item.quantity
-      }
-    })
-    // setCartItemsCount(count)
-    setTotalSpending(spending)
   }
 
   return (
