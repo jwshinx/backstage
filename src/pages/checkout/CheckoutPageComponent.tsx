@@ -6,7 +6,6 @@ import styles from './CheckoutPageComponent.module.css'
 
 export default function CheckoutPageComponent() {
   const ctx = useContext(CartContext)
-  console.log(`+++> @joel CheckoutPageComponent ctx:`, ctx)
 
   let cartItems: Array<CartItem> = []
   if (ctx && ctx.cartItems !== undefined) {
@@ -14,9 +13,6 @@ export default function CheckoutPageComponent() {
   }
 
   const totalSpending = ctx?.totalSpending
-
-  console.log(`+++> @joel CheckoutPageComponent cartItems:`, cartItems)
-  console.log(`+++> @joel CheckoutPageComponent totalSpending:`, totalSpending)
 
   return (
     <div className="container">

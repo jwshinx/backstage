@@ -28,7 +28,7 @@
 .collection-item:hover .actionbutton {
   opacity: 0.85;
   display: flex;
-  background-color: brown;
+  background-color: black;
   color: white;
   border: 1px solid black;
 }
@@ -36,7 +36,7 @@
 .collection-item:hover .actionbutton:hover {
   opacity: 0.85;
   display: flex;
-  background-color: yellow;
+  background-color: white;
   color: black;
   border: 1px solid black;
 }

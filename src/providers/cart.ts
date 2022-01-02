@@ -58,3 +58,12 @@ export const removeQuantityFromCart = (
       : cartItem
   )
 }
+
+export const calculateCartItemsCount = (cartItems: CartItem[]) => {
+  return cartItems.reduce((acc, current) => {
+    if (current.quantity) {
+      return acc + current.quantity
+    }
+    return acc
+  }, 0)
+}
