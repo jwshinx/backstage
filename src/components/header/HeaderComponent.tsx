@@ -25,13 +25,13 @@ export default function HeaderComponent() {
 
   let loggedInUser = null
   if (authCtx && authCtx.user && authCtx.user.currentUser) {
-    console.log(
-      `+++> HeaderComponent authCtx.user.currentUser:`,
-      authCtx.user.currentUser
-    )
+    // console.log(
+    //   `+++> HeaderComponent authCtx.user.currentUser:`,
+    //   authCtx.user.currentUser
+    // )
     loggedInUser = authCtx.user.currentUser
   } else {
-    console.log(`+++> HeaderComponent authCtx.user.currentUser is undefined`)
+    // console.log(`+++> HeaderComponent authCtx.user.currentUser is undefined`)
   }
 
   // const cartIconClickHandler = () => {

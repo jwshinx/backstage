@@ -15,3 +15,13 @@
   justify-content: start;
   grid-gap: 10px;
 }
+
+.shop-preview h1 {
+  display: inline;
+}
+
+.shop-preview .category-items-link {
+  color: gray;
+  margin-left: 10px;
+  cursor: pointer;
+}

@@ -9,6 +9,7 @@ import CartProvider from './providers/CartProvider'
 import HeaderComponent from './components/header/HeaderComponent'
 import HomepageComponent from './pages/homepage/HomepageComponent'
 import ShopPageComponent from './pages/shop/ShopPageComponent'
+import CategoryShopPageComponent from './pages/shop/CategoryShopPageComponent'
 import SignInPageComponent from './pages/signin/SignInPageComponent'
 import CheckoutPageComponent from './pages/checkout/CheckoutPageComponent'
 import { auth, createUserProfileDocument } from '../src/firebase/firebase.utils'
@@ -19,7 +20,7 @@ export const App = () => {
 
   // let authSubscription
   useEffect(() => {
-    console.log(`+++> App useEffect 0a`)
+    // console.log(`+++> App useEffect 0a`)
     auth.onAuthStateChanged(async (userAuth: any) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth, {
@@ -39,7 +40,7 @@ export const App = () => {
     })
 
     return () => {
-      console.log(`+++> App useEffect 100`)
+      // console.log(`+++> App useEffect 100`)
       // authSubscription
     }
   }, [])
@@ -51,7 +52,7 @@ export const App = () => {
   //   console.log(`+++> App onAddToCartClickHandler clicked 1!`)
   // }
 
-  console.log(`+++> App useEffect 1a   currentUser:`, currentUser)
+  // console.log(`+++> App useEffect 1a currentUser:`, currentUser)
 
   return (
     <CartProvider>
@@ -81,6 +82,11 @@ export const App = () => {
                   exact
                   path="/checkout"
                   component={CheckoutPageComponent}
+                />
+                <Route
+                  exact
+                  path="/shop/:category"
+                  component={CategoryShopPageComponent}
                 />
               </Switch>
             </div>

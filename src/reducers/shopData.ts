@@ -1,4 +1,39 @@
-const SHOP_DATA = {
+import { Item } from '../types/item'
+export interface ShopDataType {
+  // guitars: keyof typeof SHOP_DATA
+  guitars: {
+    id: number
+    title: string
+    routeName: string
+    items: Array<Item>
+  }
+  basses: {
+    id: number
+    title: string
+    routeName: string
+    items: Array<Item>
+  }
+  amps: {
+    id: number
+    title: string
+    routeName: string
+    items: Array<Item>
+  }
+  pedals: {
+    id: number
+    title: string
+    routeName: string
+    items: Array<Item>
+  }
+  speakers: {
+    id: number
+    title: string
+    routeName: string
+    items: Array<Item>
+  }
+}
+
+const SHOP_DATA: ShopDataType = {
   guitars: {
     id: 1,
     title: 'Guitars',

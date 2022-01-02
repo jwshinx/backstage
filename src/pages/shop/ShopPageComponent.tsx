@@ -20,7 +20,7 @@ import styles from './ShopPageComponent.module.css'
 import SHOP_DATA from '../../reducers/shopData'
 
 export default function ShopPageComponent() {
-  console.log(`+++> @joel200 ShopPageComponent SHOP_DATA:`, SHOP_DATA)
+  // console.log(`+++> @joel200 ShopPageComponent SHOP_DATA:`, SHOP_DATA)
   // console.log(`+++> ShopPageComponent SHOP_DATA keys:`, Object.keys(SHOP_DATA))
 
   return (
