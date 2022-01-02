@@ -5,8 +5,7 @@ import RemoveIcon from '../../assets/black_x.svg'
 import AddIcon from '../../assets/add.svg'
 import SubtractIcon from '../../assets/subtract.svg'
 import { CartContext } from '../../providers/CartProvider'
-// import AddToCartButtonComponent from '../../ui/button/AddToCartButtonComponent'
-import AddToCartButtonComponent from '../../ui/button/AddToCartButtonComponent'
+import ActionButtonComponent from '../../ui/button/ActionButtonComponent'
 
 interface CheckoutItemComponentProps {
   item: CartItem
@@ -48,45 +47,41 @@ export default function CheckoutItemComponent(
       <div className={`col-2 py-4 ${styles['item-details']}`}>
         <div className="row justify-content-center">
           <div className="col-3">
-            <AddToCartButtonComponent
-              // className={`${styles['action-btn']} ${styles['subtract-btn']}`}
+            <ActionButtonComponent
               styleArray={['actionbtn', 'subtractbtn']}
               onClick={() => {
                 removeQuantity(item)
               }}
-              // type="button"
             >
               <img src={SubtractIcon} alt="subtract-icon" />
-            </AddToCartButtonComponent>
+            </ActionButtonComponent>
           </div>
 
           <div className="col-3">{quantity}</div>
 
           <div className="col-3">
-            <AddToCartButtonComponent
+            <ActionButtonComponent
               styleArray={['actionbtn', 'addbtn']}
-              // className={`${styles['action-btn']} ${styles['add-btn']}`}
               onClick={() => {
                 addQuantity(item)
               }}
-              // type="button"
             >
               <img src={AddIcon} alt="add-icon" />
-            </AddToCartButtonComponent>
+            </ActionButtonComponent>
           </div>
         </div>
       </div>
       <div className={`col-2 py-4 ${styles['item-details']}`}>
-        <div className="row justify-content-center">{price}</div>
+        <div className="row justify-content-center">${price}</div>
       </div>
       <div className={`col-2 py-3`}>
         <div className="row justify-content-center">
-          <AddToCartButtonComponent
+          <ActionButtonComponent
             styleArray={['removeitemfromcart']}
             onClick={() => clearItem(item)}
           >
             <img src={RemoveIcon} alt="remove-icon" />
-          </AddToCartButtonComponent>
+          </ActionButtonComponent>
         </div>
       </div>
     </div>

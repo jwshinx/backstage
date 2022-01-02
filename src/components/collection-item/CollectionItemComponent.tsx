@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 
 import styles from './CollectionItemComponent.module.css'
 
-import AddToCartButtonComponent from '../../ui/button/AddToCartButtonComponent'
+import ActionButtonComponent from '../../ui/button/ActionButtonComponent'
 import { CartContext } from '../../providers/CartProvider'
 import { CartItem } from '../../providers/cart'
 
@@ -33,12 +33,12 @@ export default function CollectionItemComponent(
         <span className={styles.name}>{name}</span>
         <span className={styles.price}>${price}</span>
       </div>
-      <AddToCartButtonComponent
+      <ActionButtonComponent
         onClick={() => addQuantity(item)}
         styleArray={['addtocartbutton']}
       >
         Add to cart
-      </AddToCartButtonComponent>
+      </ActionButtonComponent>
     </div>
   )
 }
