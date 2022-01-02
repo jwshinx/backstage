@@ -13,6 +13,7 @@ export interface CartContextInterface {
   toggleHidden: () => void
   addQuantity: (item: CartItem) => void
   cartItemsCount: number
+  totalSpending: number
   removeQuantity: (item: CartItem) => void
   clearItem: (item: CartItem) => void
 }
@@ -26,18 +27,22 @@ const CartProvider = ({ children }: { children: any }) => {
   }
   const [cartItems, setCartItems] = useState<Array<CartItem>>([])
   const [cartItemsCount, setCartItemsCount] = useState(0)
+  const [totalSpending, setTotalSpending] = useState(0)
 
   const addQuantity = (item: CartItem) => {
     const updatedCart = addQuantityToCart(cartItems, item)
     setCartItems(updatedCart)
 
     let count = 0
+    let spending = 0
     updatedCart.map((item: CartItem) => {
       if (item.quantity) {
         count += item.quantity
+        spending += item.price * item.quantity
       }
     })
     setCartItemsCount(count)
+    setTotalSpending(spending)
   }
 
   const removeQuantity = (item: CartItem) => {
@@ -45,12 +50,15 @@ const CartProvider = ({ children }: { children: any }) => {
     setCartItems(updatedCart)
 
     let count = 0
+    let spending = 0
     updatedCart.map((item: CartItem) => {
       if (item.quantity) {
         count += item.quantity
+        spending += item.price * item.quantity
       }
     })
     setCartItemsCount(count)
+    setTotalSpending(spending)
   }
 
   const clearItem = (item: CartItem) => {
@@ -58,12 +66,15 @@ const CartProvider = ({ children }: { children: any }) => {
     setCartItems(updatedCart)
 
     let count = 0
+    let spending = 0
     updatedCart.map((item: CartItem) => {
       if (item.quantity) {
         count += item.quantity
+        spending += item.price * item.quantity
       }
     })
     setCartItemsCount(count)
+    setTotalSpending(spending)
   }
 
   return (
@@ -76,6 +87,7 @@ const CartProvider = ({ children }: { children: any }) => {
         cartItemsCount,
         removeQuantity,
         clearItem,
+        totalSpending,
       }}
     >
       {children}{' '}

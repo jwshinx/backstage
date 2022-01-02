@@ -13,14 +13,17 @@ export default function CheckoutPageComponent() {
     cartItems = ctx.cartItems
   }
 
+  const totalSpending = ctx?.totalSpending
+
   console.log(`+++> @joel CheckoutPageComponent cartItems:`, cartItems)
+  console.log(`+++> @joel CheckoutPageComponent totalSpending:`, totalSpending)
 
   return (
     <div className="container">
       <div className="row">
         <div className="col-1"></div>
         <div className={`col-10 ${styles['checkout']}`}>
-          <div className={`row ${styles['checkout-header']}`}>
+          <div className={`row border-bottom ${styles['checkout-header']}`}>
             <div className={`col-3 ${styles['header-block']}`}>
               <div className="row justify-content-center">Product</div>
             </div>
@@ -41,6 +44,15 @@ export default function CheckoutPageComponent() {
           {cartItems.map((item: CartItem) => {
             return <CheckoutItemComponent item={item} key={item.id} />
           })}
+        </div>
+        <div className="col-1"></div>
+      </div>
+      <div className="row">
+        <div className="col-1"></div>
+        <div className="col-10 border-top">
+          <div className="row m-3">
+            <h2>Total: ${totalSpending}</h2>
+          </div>
         </div>
         <div className="col-1"></div>
       </div>
