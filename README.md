@@ -1,6 +1,6 @@
-# react-template
+# backstage
 
-Bare starter project from scratch. No create-react-app. React, typescript, webpack, babel. Includes linter and prettier baked in.
+A place to buy guitars and music gear. Branched off a template project: https://github.com/jwshinx/react-template. React, typescript, webpack, babel. Includes linter and prettier baked in.
 
 ## Setup
 
