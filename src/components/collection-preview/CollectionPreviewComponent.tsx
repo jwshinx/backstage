@@ -15,22 +15,29 @@ export default function CollectionPreviewComponent(
   // console.log(`+++> CPC props:`, props)
   const { title, items } = props
   return (
-    <div className={styles['shop-preview']}>
-      <h1>{title.toUpperCase()}</h1>
-      <Link
-        to={{
-          pathname: `/shop/${title}`,
-          state: { category: title },
-        }}
-      >
-        <span className={styles['category-items-link']}>More...</span>
-      </Link>
-      <div className={styles.preview}>
-        {items
-          .filter((item: Item, idx: number) => idx < 4)
-          .map((item: Item) => (
-            <CollectionItemComponent key={item.id} item={item} />
-          ))}
+    <div className={`container ${styles['shop-preview']}`}>
+      <div className="row">
+        <div className="col-12">
+          <h1>{title.toUpperCase()}</h1>
+          <Link
+            to={{
+              pathname: `/shop/${title}`,
+              state: { category: title },
+            }}
+          >
+            <span className={styles['category-items-link']}>More...</span>
+          </Link>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className={`col-12 ${styles.preview}`}>
+          {items
+            .filter((item: Item, idx: number) => idx < 4)
+            .map((item: Item) => (
+              <CollectionItemComponent key={item.id} item={item} />
+            ))}
+        </div>
       </div>
     </div>
   )

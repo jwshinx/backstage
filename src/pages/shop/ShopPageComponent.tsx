@@ -1,6 +1,5 @@
 import React from 'react'
 import CollectionPreviewComponent from '../../components/collection-preview/CollectionPreviewComponent'
-import styles from './ShopPageComponent.module.css'
 
 // interface ItemType {
 //   id: number
@@ -24,7 +23,7 @@ export default function ShopPageComponent() {
   // console.log(`+++> ShopPageComponent SHOP_DATA keys:`, Object.keys(SHOP_DATA))
 
   return (
-    <div className={styles.shop}>
+    <>
       {Object.keys(SHOP_DATA).map((key) => {
         return (
           <CollectionPreviewComponent
@@ -34,6 +33,6 @@ export default function ShopPageComponent() {
           />
         )
       })}
-    </div>
+    </>
   )
 }
