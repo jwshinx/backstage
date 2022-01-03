@@ -137,6 +137,27 @@ const SHOP_DATA: ShopDataType = {
           'https://images.unsplash.com/photo-1598519503897-a233742ea896?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=Mnw0Mjg5N3wwfDF8c2VhcmNofDh8fGJhc3MlMjBndWl0YXJ8ZW58MHx8fHwxNjIzMzAyMzAx\u0026ixlib=rb-1.2.1\u0026q=80\u0026w=1080',
         price: 2900,
       },
+      {
+        id: 14,
+        name: 'Rickenbacker',
+        imageUrl:
+          'https://images.unsplash.com/photo-1622483819773-911f8fcf15ac?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=Mnw0Mjg5N3wwfDF8c2VhcmNofDh8fGJhc3MlMjBndWl0YXJ8ZW58MHx8fHwxNjIzMzAyMzAx\u0026ixlib=rb-1.2.1\u0026q=80\u0026w=1080',
+        price: 3700,
+      },
+      {
+        id: 15,
+        name: 'Hofner',
+        imageUrl:
+          'https://images.unsplash.com/photo-1586399811074-b346b736859f?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=Mnw0Mjg5N3wwfDF8c2VhcmNofDh8fGJhc3MlMjBndWl0YXJ8ZW58MHx8fHwxNjIzMzAyMzAx\u0026ixlib=rb-1.2.1\u0026q=80\u0026w=1080',
+        price: 5200,
+      },
+      {
+        id: 17,
+        name: 'Gibson',
+        imageUrl:
+          'https://images.unsplash.com/photo-1525898181636-29b30c26f6e1?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=Mnw0Mjg5N3wwfDF8c2VhcmNofDh8fGJhc3MlMjBndWl0YXJ8ZW58MHx8fHwxNjIzMzAyMzAx\u0026ixlib=rb-1.2.1\u0026q=80\u0026w=1080',
+        price: 4800,
+      },
     ],
   },
   amps: {
@@ -192,6 +213,13 @@ const SHOP_DATA: ShopDataType = {
         imageUrl:
           'https://images.unsplash.com/photo-1510104183447-b598400bb62c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0Mjg5N3wwfDF8c2VhcmNofDh8fG1hcnNoYWxsJTIwc3BlYWtlcnN8ZW58MHx8fHwxNjI5NzAwMTg1&ixlib=rb-1.2.1&q=80&w=1080',
         price: 600,
+      },
+      {
+        id: 37,
+        name: 'Ibanez',
+        imageUrl:
+          'https://images.unsplash.com/photo-1430922080198-aa15f3a718b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0Mjg5N3wwfDF8c2VhcmNofDh8fG1hcnNoYWxsJTIwc3BlYWtlcnN8ZW58MHx8fHwxNjI5NzAwMTg1&ixlib=rb-1.2.1&q=80&w=1080',
+        price: 3900,
       },
     ],
   },
