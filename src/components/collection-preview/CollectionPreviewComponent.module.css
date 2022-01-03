@@ -26,7 +26,11 @@
 }
 
 .shop-preview .category-items-link {
-  color: gray;
+  color: black;
   margin-left: 10px;
   cursor: pointer;
+}
+
+.shop-preview .category-items-link:hover {
+  color: grey;
 }

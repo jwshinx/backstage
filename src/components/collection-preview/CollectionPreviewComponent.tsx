@@ -19,14 +19,6 @@ export default function CollectionPreviewComponent(
       <div className="row">
         <div className="col-12">
           <h1>{title.toUpperCase()}</h1>
-          <Link
-            to={{
-              pathname: `/shop/${title}`,
-              state: { category: title },
-            }}
-          >
-            <span className={styles['category-items-link']}>More...</span>
-          </Link>
         </div>
       </div>
 
@@ -35,8 +27,20 @@ export default function CollectionPreviewComponent(
           {items
             .filter((item: Item, idx: number) => idx < 4)
             .map((item: Item) => (
-              <CollectionItemComponent key={item.id} item={item} />
+              <div key={item.id} className="col-2">
+                <CollectionItemComponent key={item.id} item={item} />
+              </div>
             ))}
+          <div className="col-4">
+            <Link
+              to={{
+                pathname: `/shop/${title}`,
+                state: { category: title },
+              }}
+            >
+              <h3 className={styles['category-items-link']}>More...</h3>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
