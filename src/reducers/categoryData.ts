@@ -1,4 +1,6 @@
-const CATEGORY_DATA = [
+import { Category } from '../types/category'
+
+const CATEGORY_DATA: Array<Category> = [
   {
     title: 'amps',
     imageUrl:

@@ -2,6 +2,7 @@ import React from 'react'
 import MenuItemComponent from '../menu-item/MenuItemComponent'
 import styles from './HomepageMenuComponent.module.css'
 import CATEGORY_DATA from '../../reducers/categoryData'
+import { Category } from '../../types/category'
 // import SHOP_DATA from './shop.data';
 // import { connect } from 'react-redux';
 // import { createStructuredSelector } from 'reselect';
@@ -37,9 +38,10 @@ const HomepageMenuComponent: React.FC<any> = (): JSX.Element => {
 
   return (
     <div className={styles['category-menu']}>
-      {categoryData.map((category: any) => (
+      {categoryData.map((category: Category) => (
         <MenuItemComponent
           key={category.id}
+          id={category.id}
           title={category.title}
           imageUrl={category.imageUrl}
           linkUrl={category.linkUrl}

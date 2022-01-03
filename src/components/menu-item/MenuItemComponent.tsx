@@ -1,10 +1,11 @@
 import React from 'react'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
+import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
 import styles from './MenuItemComponent.module.css'
+// import { Category as Caa } from '../../types/category'
 
 interface MenuItemComponentProps extends RouteComponentProps<any> {
   title: string
-  // id: number;
+  id: number
   imageUrl: string
   linkUrl: string
   size?: string
@@ -17,13 +18,7 @@ interface MenuItemComponentProps extends RouteComponentProps<any> {
 const MenuItemComponent: React.FC<MenuItemComponentProps> = (
   props
 ): JSX.Element => {
-  // console.log('+++> MenuItemComponent bbb props:', props)
-  // const { title, imageUrl, size, history, linkUrl, match } = props
   const { title, imageUrl } = props
-  // console.log('+++> MenuItemComponent bbb match:', match)
-  // console.log('+++> MenuItemComponent linkUrl:', linkUrl)
-  // console.log('+++> MenuItemComponent history:', history)
-  // console.log('+++> MenuItemComponent size:', size)
 
   return (
     <div
@@ -37,8 +32,15 @@ const MenuItemComponent: React.FC<MenuItemComponentProps> = (
         }}
       />
       <div className={styles.content}>
-        <h1 className={styles.title}>{title.toUpperCase()}</h1>
-        <span className={styles.subtitle}>SHOP NOW</span>
+        <Link
+          to={{
+            pathname: `/shop/${title}`,
+            state: { category: title },
+          }}
+        >
+          <h1 className={styles.title}>{title.toUpperCase()}</h1>
+          <span className={styles.subtitle}>SHOP NOW</span>
+        </Link>
       </div>
     </div>
   )
