@@ -1,19 +1,35 @@
 import React from 'react'
 import { Item } from '../../types/item'
+import RowFactory from '../../utils/RowFactory'
+import CollectionItemComponent from '../collection-item/CollectionItemComponent'
 
 interface CollectionCategoryComponentProps {
-  item: Item
+  items: Array<Item>
 }
 
 export default function CollectionCategoryComponent(
   props: CollectionCategoryComponentProps
 ) {
-  // console.log(`+++> CollectionCategoryComponent props:`, props)
+  const { items } = props
+  const factory = new RowFactory(items)
+
   return (
-    <div>
-      <h3>
-        CollectionCategoryComponent {props.item.id} {props.item.name}
-      </h3>
-    </div>
+    <>
+      {Object.keys(factory.rowsOfItemsHash).map(
+        (keyValue: string, idx: number) => {
+          return (
+            <div className="row my-3" key={idx}>
+              {factory.rowsOfItemsHash[parseInt(keyValue)].map((item: Item) => {
+                return (
+                  <div className="col-3" key={item.id}>
+                    <CollectionItemComponent key={item.id} item={item} />
+                  </div>
+                )
+              })}
+            </div>
+          )
+        }
+      )}
+    </>
   )
 }
