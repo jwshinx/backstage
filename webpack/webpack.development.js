@@ -14,6 +14,5 @@ module.exports = {
       'process.env.city': JSON.stringify('rome'),
     }),
     new ReactRefreshWebpackPlugin(),
-  ]
+  ],
 }
-
