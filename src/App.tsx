@@ -32,11 +32,11 @@ import 'firebase/compat/firestore'
 //   }
 // }
 
-// interface ExpenseType {
-//   id: string
-//   // name: string
-//   // amount: string
-// }
+interface ExpenseType {
+  id: string
+  name: string
+  amount: string
+}
 
 export const App = () => {
   const [currentUser, setCurrentUser] = useState<any | null>(null)
@@ -44,9 +44,9 @@ export const App = () => {
   // const [expenses, setExpenses] = useState<
   //   Array<firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>>
   // >([])
-  // const [expenses, setExpenses] = useState<Array<ExpenseType>>([])
+  const [expenses, setExpenses] = useState<Array<ExpenseType>>([])
 
-  const [expenseIds, setExpenseIds] = useState<Array<string>>([])
+  // const [expenseIds, setExpenseIds] = useState<Array<string>>([])
 
   // let expensesSubscription
   useEffect(() => {
@@ -64,7 +64,11 @@ export const App = () => {
             console.log(`+++> doc id:`, doc.id)
             console.log(`+++> doc data:`, doc.data())
 
-            return doc.id
+            return {
+              amount: doc.data().amount,
+              name: doc.data().name,
+              id: doc.id,
+            }
             // id: doc.id,
             // a: doc.data().name,
             // b: doc.data().amount,
@@ -77,7 +81,7 @@ export const App = () => {
             // docObject{ id: doc.id, ...(doc.data())}
             // console.log(`+++> doc:`, doc.id, doc.data())
           })
-          setExpenseIds(data)
+          setExpenses(data)
         },
         () => {
           console.log(`+++> onSnapshot callback`)
@@ -167,8 +171,10 @@ export const App = () => {
             </div>
 
             <div className="row mt-3 mb-3">
-              {expenseIds.map((id) => (
-                <p key={id}>{id}</p>
+              {expenses.map((item) => (
+                <p key={item.id}>
+                  {item.id} {item.name} {item.amount}
+                </p>
               ))}
             </div>
             <div className="row mt-3 mb-3">
