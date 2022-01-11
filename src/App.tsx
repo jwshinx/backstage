@@ -14,34 +14,107 @@ import SignInAndSignUpPageComponent from './pages/signin/SignInAndSignUpPageComp
 import CheckoutPageComponent from './pages/checkout/CheckoutPageComponent'
 import { auth, createUserProfileDocument } from '../src/firebase/firebase.utils'
 
+// import { collection, query, where, getDocs } from 'firebase/firestore'
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/firestore'
+
+// const foobar = async () => {
+//   try {
+//     console.log(`+++> foobar 1`)
+//     const fs = firebase.firestore()
+//     const expenseItem = fs.collection('expenses').doc('JxolGPDhP3DTKNARgSdB')
+//     // const expenseItem = fs.doc('/expenses/JxolGPDhP3DTKNARgSdB')
+//     const item = await expenseItem.get()
+//     console.log(`+++> foobar 2:`, item.data)
+//     return 'yay'
+//   } catch (error) {
+//     console.log(`+++> foobar error:`, error)
+//   }
+// }
+
 export const App = () => {
   const [currentUser, setCurrentUser] = useState<any | null>(null)
   // const [cartItems, setCartItems] = useState<number[]>([])
 
+  // let expensesSubscription
+  useEffect(() => {
+    console.log(`+++> App useEffect expensesSubscription 0a`)
+
+    const unsubscribeExpense = firebase
+      .firestore()
+      .collection('expenses')
+      .onSnapshot(
+        (shot) => {
+          shot.docs.map((doc) => {
+            console.log(`+++> doc:`, doc.id, doc.data())
+          })
+        },
+        () => {
+          console.log(`+++> onSnapshot callback`)
+        }
+      )
+    return () => unsubscribeExpense()
+    // const fetchData = async () => {
+    //   try {
+    //     const resp = await firebase
+    //       .firestore()
+    //       .collection('expenses')
+    //       .doc('JxolGPDhP3DTKNARgSdB')
+    //     console.log(`+++> foobar 3 resp:`, resp)
+    //     const data = resp.get()
+    //     console.log(`+++> foobar 3 resp data:`, data)
+    //   } catch (error) {
+    //     console.log(`+++> foobar 3 error:`, error)
+    //   }
+    // }
+    // fetchData()
+
+    // const fs = firebase.firestore()
+    // const expenseItem = fs.collection('expenses').doc('JxolGPDhP3DTKNARgSdB')
+    // const expenseItem = fs.doc('/expenses/JxolGPDhP3DTKNARgSdB')
+    // console.log(
+    //   `+++> App useEffect expensesSubscription 1 expenseItem.data():`,
+    //   expenseItem.
+    // )
+
+    // const db = 'backstage-b49c3'
+    // const q = query(collection(db, 'cities'), where('capital', '==', true))
+  }, [])
+
   // let authSubscription
   useEffect(() => {
-    // console.log(`+++> App useEffect 0a`)
-    auth.onAuthStateChanged(async (userAuth: any) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth, {
-          color: 'red',
-        })
-        userRef!.onSnapshot((snapShot) => {
-          setCurrentUser({
-            currentUser: {
-              id: snapShot.id,
-              ...snapShot.data(),
-            },
+    console.log(`+++> App useEffect 0a`)
+    const unsubscribeFromAuth = auth.onAuthStateChanged(
+      async (userAuth: any) => {
+        console.log(`+++> App useEffect 1 userAuth:`, userAuth)
+        if (userAuth) {
+          const userRef = await createUserProfileDocument(userAuth, {
+            color: 'red',
           })
-        })
-      } else {
-        setCurrentUser({ currentUser: userAuth })
+          userRef!.onSnapshot((snapShot) => {
+            console.log(`+++> App useEffect 2 snapShot:`, snapShot)
+            console.log(`+++> App useEffect 2 snapShot.id:`, snapShot.id)
+            console.log(
+              `+++> App useEffect 2 snapShot.data():`,
+              snapShot.data()
+            )
+            setCurrentUser({
+              currentUser: {
+                id: snapShot.id,
+                ...snapShot.data(),
+              },
+            })
+          })
+        } else {
+          setCurrentUser({ currentUser: userAuth })
+        }
       }
-    })
+    )
 
     return () => {
-      // console.log(`+++> App useEffect 100`)
+      console.log(`+++> App useEffect 100`)
       // authSubscription
+      unsubscribeFromAuth()
     }
   }, [])
 
