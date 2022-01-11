@@ -32,22 +32,52 @@ import 'firebase/compat/firestore'
 //   }
 // }
 
+// interface ExpenseType {
+//   id: string
+//   // name: string
+//   // amount: string
+// }
+
 export const App = () => {
   const [currentUser, setCurrentUser] = useState<any | null>(null)
   // const [cartItems, setCartItems] = useState<number[]>([])
+  // const [expenses, setExpenses] = useState<
+  //   Array<firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>>
+  // >([])
+  // const [expenses, setExpenses] = useState<Array<ExpenseType>>([])
+
+  const [expenseIds, setExpenseIds] = useState<Array<string>>([])
 
   // let expensesSubscription
   useEffect(() => {
     console.log(`+++> App useEffect expensesSubscription 0a`)
 
+    // let data = null
     const unsubscribeExpense = firebase
       .firestore()
       .collection('expenses')
       .onSnapshot(
-        (shot) => {
-          shot.docs.map((doc) => {
-            console.log(`+++> doc:`, doc.id, doc.data())
+        (snapShot) => {
+          // setExpenses(snapShot.docs)
+          // let docObject = {}
+          const data = snapShot.docs.map((doc) => {
+            console.log(`+++> doc id:`, doc.id)
+            console.log(`+++> doc data:`, doc.data())
+
+            return doc.id
+            // id: doc.id,
+            // a: doc.data().name,
+            // b: doc.data().amount,
+
+            // console.log(`+++> doc id:`, doc.id)
+            // console.log(`+++> doc data:`, doc.data())
+            // docObject = { id: doc.id }
+            // console.log(`+++> docObject:`, docObject)
+
+            // docObject{ id: doc.id, ...(doc.data())}
+            // console.log(`+++> doc:`, doc.id, doc.data())
           })
+          setExpenseIds(data)
         },
         () => {
           console.log(`+++> onSnapshot callback`)
@@ -136,6 +166,11 @@ export const App = () => {
               <HeaderComponent />
             </div>
 
+            <div className="row mt-3 mb-3">
+              {expenseIds.map((id) => (
+                <p key={id}>{id}</p>
+              ))}
+            </div>
             <div className="row mt-3 mb-3">
               <Switch>
                 <Route exact path="/" component={HomepageComponent} />
