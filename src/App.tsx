@@ -18,12 +18,6 @@ import { auth, createUserProfileDocument } from '../src/firebase/firebase.utils'
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/firestore'
 
-interface ExpenseType {
-  id: string
-  name: string
-  amount: string
-}
-
 interface CategoryType {
   id: string
   name: string
@@ -35,7 +29,6 @@ interface CategoryType {
 export const App = () => {
   const [currentUser, setCurrentUser] = useState<any | null>(null)
   // const [cartItems, setCartItems] = useState<number[]>([])
-  const [expenses, setExpenses] = useState<Array<ExpenseType>>([])
   const [categories, setCategories] = useState<Array<CategoryType>>([])
 
   useEffect(() => {
@@ -64,34 +57,6 @@ export const App = () => {
         }
       )
     return () => unsubscribeCategories()
-  }, [])
-
-  // let expensesSubscription
-  useEffect(() => {
-    console.log(`+++> App useEffect expensesSubscription 0a`)
-
-    const unsubscribeExpense = firebase
-      .firestore()
-      .collection('expenses')
-      .onSnapshot(
-        (snapShot) => {
-          const data = snapShot.docs.map((doc) => {
-            console.log(`+++> doc id:`, doc.id)
-            console.log(`+++> doc data:`, doc.data())
-
-            return {
-              amount: doc.data().amount,
-              name: doc.data().name,
-              id: doc.id,
-            }
-          })
-          setExpenses(data)
-        },
-        () => {
-          console.log(`+++> onSnapshot callback`)
-        }
-      )
-    return () => unsubscribeExpense()
   }, [])
 
   // let authSubscription
@@ -131,15 +96,6 @@ export const App = () => {
     }
   }, [])
 
-  // const onAddToCartClickHandler = () => {
-  //   console.log(`+++> App onAddToCartClickHandler clicked 0!`)
-  //   // console.log(`+++> App onAddToCartClickHandler price:`, price)
-  //   setCartItems([9898])
-  //   console.log(`+++> App onAddToCartClickHandler clicked 1!`)
-  // }
-
-  // console.log(`+++> App useEffect 1a currentUser:`, currentUser)
-
   return (
     <CartProvider>
       <AuthContext.Provider value={{ user: currentUser }}>
@@ -147,14 +103,6 @@ export const App = () => {
           <div className="col-12">
             <div className="row mt-3 mb-3">
               <HeaderComponent />
-            </div>
-
-            <div className="row">
-              {expenses.map((item) => (
-                <p key={item.id}>
-                  {item.id} {item.name} {item.amount}
-                </p>
-              ))}
             </div>
 
             <div className="row">
