@@ -18,20 +18,6 @@ import { auth, createUserProfileDocument } from '../src/firebase/firebase.utils'
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/firestore'
 
-// const foobar = async () => {
-//   try {
-//     console.log(`+++> foobar 1`)
-//     const fs = firebase.firestore()
-//     const expenseItem = fs.collection('expenses').doc('JxolGPDhP3DTKNARgSdB')
-//     // const expenseItem = fs.doc('/expenses/JxolGPDhP3DTKNARgSdB')
-//     const item = await expenseItem.get()
-//     console.log(`+++> foobar 2:`, item.data)
-//     return 'yay'
-//   } catch (error) {
-//     console.log(`+++> foobar error:`, error)
-//   }
-// }
-
 interface ExpenseType {
   id: string
   name: string
