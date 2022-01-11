@@ -41,25 +41,17 @@ interface ExpenseType {
 export const App = () => {
   const [currentUser, setCurrentUser] = useState<any | null>(null)
   // const [cartItems, setCartItems] = useState<number[]>([])
-  // const [expenses, setExpenses] = useState<
-  //   Array<firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>>
-  // >([])
   const [expenses, setExpenses] = useState<Array<ExpenseType>>([])
-
-  // const [expenseIds, setExpenseIds] = useState<Array<string>>([])
 
   // let expensesSubscription
   useEffect(() => {
     console.log(`+++> App useEffect expensesSubscription 0a`)
 
-    // let data = null
     const unsubscribeExpense = firebase
       .firestore()
       .collection('expenses')
       .onSnapshot(
         (snapShot) => {
-          // setExpenses(snapShot.docs)
-          // let docObject = {}
           const data = snapShot.docs.map((doc) => {
             console.log(`+++> doc id:`, doc.id)
             console.log(`+++> doc data:`, doc.data())
@@ -69,17 +61,6 @@ export const App = () => {
               name: doc.data().name,
               id: doc.id,
             }
-            // id: doc.id,
-            // a: doc.data().name,
-            // b: doc.data().amount,
-
-            // console.log(`+++> doc id:`, doc.id)
-            // console.log(`+++> doc data:`, doc.data())
-            // docObject = { id: doc.id }
-            // console.log(`+++> docObject:`, docObject)
-
-            // docObject{ id: doc.id, ...(doc.data())}
-            // console.log(`+++> doc:`, doc.id, doc.data())
           })
           setExpenses(data)
         },
@@ -88,31 +69,6 @@ export const App = () => {
         }
       )
     return () => unsubscribeExpense()
-    // const fetchData = async () => {
-    //   try {
-    //     const resp = await firebase
-    //       .firestore()
-    //       .collection('expenses')
-    //       .doc('JxolGPDhP3DTKNARgSdB')
-    //     console.log(`+++> foobar 3 resp:`, resp)
-    //     const data = resp.get()
-    //     console.log(`+++> foobar 3 resp data:`, data)
-    //   } catch (error) {
-    //     console.log(`+++> foobar 3 error:`, error)
-    //   }
-    // }
-    // fetchData()
-
-    // const fs = firebase.firestore()
-    // const expenseItem = fs.collection('expenses').doc('JxolGPDhP3DTKNARgSdB')
-    // const expenseItem = fs.doc('/expenses/JxolGPDhP3DTKNARgSdB')
-    // console.log(
-    //   `+++> App useEffect expensesSubscription 1 expenseItem.data():`,
-    //   expenseItem.
-    // )
-
-    // const db = 'backstage-b49c3'
-    // const q = query(collection(db, 'cities'), where('capital', '==', true))
   }, [])
 
   // let authSubscription
