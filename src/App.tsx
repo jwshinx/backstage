@@ -24,10 +24,47 @@ interface ExpenseType {
   amount: string
 }
 
+interface CategoryType {
+  id: string
+  name: string
+  linkUrl: string
+  imageUrl: string
+  size?: string
+}
+
 export const App = () => {
   const [currentUser, setCurrentUser] = useState<any | null>(null)
   // const [cartItems, setCartItems] = useState<number[]>([])
   const [expenses, setExpenses] = useState<Array<ExpenseType>>([])
+  const [categories, setCategories] = useState<Array<CategoryType>>([])
+
+  useEffect(() => {
+    console.log(`+++> App useEffect categories 0a`)
+
+    const unsubscribeCategories = firebase
+      .firestore()
+      .collection('categories')
+      .onSnapshot(
+        (snapShot) => {
+          const data = snapShot.docs.map((doc) => {
+            console.log(`+++> @joel doc data:`, doc.data())
+
+            return {
+              linkUrl: doc.data().linkUrl,
+              imageUrl: doc.data().imageUrl,
+              name: doc.data().name,
+              size: doc.data().size,
+              id: doc.id,
+            }
+          })
+          setCategories(data)
+        },
+        () => {
+          console.log(`+++> onSnapshot callback`)
+        }
+      )
+    return () => unsubscribeCategories()
+  }, [])
 
   // let expensesSubscription
   useEffect(() => {
@@ -112,13 +149,22 @@ export const App = () => {
               <HeaderComponent />
             </div>
 
-            <div className="row mt-3 mb-3">
+            <div className="row">
               {expenses.map((item) => (
                 <p key={item.id}>
                   {item.id} {item.name} {item.amount}
                 </p>
               ))}
             </div>
+
+            <div className="row">
+              {categories.map((item) => (
+                <p key={item.id}>
+                  {item.id} {item.name} {item.linkUrl} - {item.size || 'NA'}
+                </p>
+              ))}
+            </div>
+
             <div className="row mt-3 mb-3">
               <Switch>
                 <Route exact path="/" component={HomepageComponent} />
