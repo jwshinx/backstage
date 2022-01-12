@@ -2,10 +2,29 @@ import React from 'react'
 import useInput from '../../hooks/useInput'
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/firestore'
+import { RouteComponentProps, useLocation, withRouter } from 'react-router-dom'
+import { ShopDataType } from '../../reducers/shopData'
+
+interface CollectionItemCreateComponentProps extends RouteComponentProps<any> {
+  category: string
+}
+
+interface stateType {
+  category: keyof ShopDataType
+}
 
 import styles from './CollectionItemCreateComponent.module.css'
 
-const CollectionItemCreateComponent = () => {
+const CollectionItemCreateComponent = (
+  props: CollectionItemCreateComponentProps
+) => {
+  const {
+    state: { category },
+  } = useLocation<stateType>()
+
+  console.log(`+++> CollectionItemCreateComponent props:`, props)
+  console.log(`+++> CollectionItemCreateComponent category:`, category)
+
   const {
     value: itemName,
     isValid: itemNameIsValid,
@@ -40,6 +59,7 @@ const CollectionItemCreateComponent = () => {
     if (!formIsValid) return
 
     const data = {
+      routeName: category,
       name: itemName,
       price: itemPrice,
       imageUrl: itemImageUrl,
@@ -138,4 +158,4 @@ const CollectionItemCreateComponent = () => {
   )
 }
 
-export default CollectionItemCreateComponent
+export default withRouter(CollectionItemCreateComponent)
