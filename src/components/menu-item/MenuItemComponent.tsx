@@ -1,11 +1,10 @@
 import React from 'react'
 import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
 import styles from './MenuItemComponent.module.css'
-// import { Category as Caa } from '../../types/category'
 
 interface MenuItemComponentProps extends RouteComponentProps<any> {
-  title: string
-  id: number
+  name: string
+  id: string
   imageUrl: string
   linkUrl: string
   size?: string
@@ -18,7 +17,7 @@ interface MenuItemComponentProps extends RouteComponentProps<any> {
 const MenuItemComponent: React.FC<MenuItemComponentProps> = (
   props
 ): JSX.Element => {
-  const { title, imageUrl } = props
+  const { name, imageUrl } = props
 
   return (
     <div
@@ -34,11 +33,11 @@ const MenuItemComponent: React.FC<MenuItemComponentProps> = (
       <div className={styles.content}>
         <Link
           to={{
-            pathname: `/shop/${title}`,
-            state: { category: title },
+            pathname: `/shop/${name}`,
+            state: { category: name },
           }}
         >
-          <h1 className={styles.title}>{title.toUpperCase()}</h1>
+          <h1 className={styles.title}>{name.toUpperCase()}</h1>
           <span className={styles.subtitle}>SHOP NOW</span>
         </Link>
       </div>

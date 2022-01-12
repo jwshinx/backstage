@@ -1,7 +1,7 @@
 export interface Category {
-  title: string
+  name: string
   imageUrl: string
-  id: number
+  id: string
   linkUrl: string
   size?: string
 }
