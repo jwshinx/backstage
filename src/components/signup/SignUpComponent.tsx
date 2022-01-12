@@ -14,36 +14,36 @@ export default function SignUpComponent() {
     value: enteredDisplayName,
     isValid: enteredDisplayNameIsValid,
     hasError: displayNameHasError,
-    enteredValueChangeHandler: displayNameChangeHandler,
+    valueChangeHandler: displayNameChangeHandler,
     inputBlurHandler: displayNameInputBlurHandler,
-    resetValue: resetDisplayNameValue,
+    reset: resetDisplayNameValue,
   } = useInput((value: string) => value.trim() !== '')
 
   const {
     value: enteredEmail,
     isValid: enteredEmailIsValid,
     hasError: emailHasError,
-    enteredValueChangeHandler: emailChangeHandler,
+    valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailInputBlurHandler,
-    resetValue: resetEmailValue,
+    reset: resetEmailValue,
   } = useInput((value: string) => value.includes('@'))
 
   const {
     value: enteredPassword,
     isValid: enteredPasswordIsValid,
     hasError: passwordHasError,
-    enteredValueChangeHandler: passwordChangeHandler,
+    valueChangeHandler: passwordChangeHandler,
     inputBlurHandler: passwordInputBlurHandler,
-    resetValue: resetPasswordValue,
+    reset: resetPasswordValue,
   } = useInput((value: string) => value.trim() !== '')
 
   const {
     value: enteredConfirmPassword,
     isValid: enteredConfirmPasswordIsValid,
     hasError: confirmPasswordHasError,
-    enteredValueChangeHandler: confirmPasswordChangeHandler,
+    valueChangeHandler: confirmPasswordChangeHandler,
     inputBlurHandler: confirmPasswordInputBlurHandler,
-    resetValue: resetConfirmPasswordValue,
+    reset: resetConfirmPasswordValue,
   } = useInput((value: string) => value.trim() !== '')
 
   const formSubmitHandler = async (event: React.SyntheticEvent) => {

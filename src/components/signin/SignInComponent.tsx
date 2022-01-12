@@ -9,18 +9,18 @@ export default function SignInComponent() {
     value: enteredEmail,
     isValid: enteredEmailIsValid,
     hasError: emailHasError,
-    enteredValueChangeHandler: emailChangeHandler,
+    valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailInputBlurHandler,
-    resetValue: resetEmailValue,
+    reset: resetEmailValue,
   } = useInput((value: string) => value.includes('@'))
 
   const {
     value: enteredPassword,
     isValid: enteredPasswordIsValid,
     hasError: passwordHasError,
-    enteredValueChangeHandler: passwordChangeHandler,
+    valueChangeHandler: passwordChangeHandler,
     inputBlurHandler: passwordInputBlurHandler,
-    resetValue: resetPasswordValue,
+    reset: resetPasswordValue,
   } = useInput((value: string) => value.trim() !== '')
 
   const formSubmitHandler = async (event: React.SyntheticEvent) => {
