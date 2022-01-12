@@ -1,54 +1,48 @@
-import React, { useState } from 'react'
+import React from 'react'
+import useInput from '../../hooks/useInput'
 import styles from './CollectionItemCreateComponent.module.css'
 
 const CollectionItemCreateComponent = () => {
-  const [itemName, setItemName] = useState('')
-  const [itemNameIsTouched, setItemNameIsTouched] = useState(false)
+  const {
+    value: itemName,
+    isValid: itemNameIsValid,
+    hasError: itemNameHasError,
+    valueChangeHandler: itemNameChangeHandler,
+    inputBlurHandler: itemNameInputBlurHandler,
+    reset: resetItemName,
+  } = useInput((value: string) => value.trim() !== '')
 
-  const [itemPrice, setItemPrice] = useState('')
-  const [itemPriceIsTouched, setItemPriceIsTouched] = useState(false)
+  const {
+    value: itemPrice,
+    isValid: itemPriceIsValid,
+    hasError: itemPriceHasError,
+    valueChangeHandler: itemPriceChangeHandler,
+    inputBlurHandler: itemPriceInputBlurHandler,
+    reset: resetItemPrice,
+  } = useInput((value: string) => value.trim() !== '')
 
-  const [itemImageUrl, setItemImageUrl] = useState('')
-  const [itemImageUrlIsTouched, setItemImageUrlIsTouched] = useState(false)
-
-  const itemNameChangeHandler = (event: any) => {
-    setItemName(event.target.value)
-  }
-
-  const itemNameInputBlurHandler = () => {
-    setItemNameIsTouched(true)
-  }
-
-  const itemPriceChangeHandler = (event: any) => {
-    setItemPrice(event.target.value)
-  }
-
-  const itemPriceInputBlurHandler = () => {
-    setItemPriceIsTouched(true)
-  }
-
-  const itemImageUrlChangeHandler = (event: any) => {
-    setItemImageUrl(event.target.value)
-  }
-
-  const itemImageUrlInputBlurHandler = () => {
-    setItemImageUrlIsTouched(true)
-  }
+  const {
+    value: itemImageUrl,
+    isValid: itemImageUrlIsValid,
+    hasError: itemImageUrlHasError,
+    valueChangeHandler: itemImageUrlChangeHandler,
+    inputBlurHandler: itemImageUrlInputBlurHandler,
+    reset: resetItemImageUrl,
+  } = useInput((value: string) => value.trim() !== '')
 
   const formSubmitHandler = (event: any) => {
     event.preventDefault()
 
-    if (itemNameIsInvalid || itemPriceIsInvalid || itemImageUrlIsInvalid) {
+    if (!itemNameIsValid || !itemPriceIsValid || !itemImageUrlIsValid) {
       return
     }
     console.log(`+++> formSubmitHandler click!`, event)
     console.log(`+++> formSubmitHandler do submit!`)
-  }
 
-  const itemNameIsInvalid = itemNameIsTouched && itemName.trim() === ''
-  const itemPriceIsInvalid = itemPriceIsTouched && itemPrice.trim() === ''
-  const itemImageUrlIsInvalid =
-    itemImageUrlIsTouched && itemImageUrl.trim() === ''
+    resetItemName()
+    resetItemPrice()
+    resetItemImageUrl()
+  }
 
   const formIsValid =
     itemName.trim() !== '' &&
@@ -75,7 +69,7 @@ const CollectionItemCreateComponent = () => {
             />
             <div className={styles['error-area']}>
               <span className={styles['error-message']}>
-                {itemNameIsInvalid ? 'Please enter a value' : ''}
+                {itemNameHasError ? 'Please enter a value' : ''}
               </span>
             </div>
           </div>
@@ -93,7 +87,7 @@ const CollectionItemCreateComponent = () => {
             />
             <div className={styles['error-area']}>
               <span className={styles['error-message']}>
-                {itemPriceIsInvalid ? 'Please enter a value' : ''}
+                {itemPriceHasError ? 'Please enter a value' : ''}
               </span>
             </div>
           </div>
@@ -111,7 +105,7 @@ const CollectionItemCreateComponent = () => {
             />
             <div className={styles['error-area']}>
               <span className={styles['error-message']}>
-                {itemImageUrlIsInvalid ? 'Please enter a value' : ''}
+                {itemImageUrlHasError ? 'Please enter a value' : ''}
               </span>
             </div>
           </div>
