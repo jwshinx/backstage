@@ -8,3 +8,12 @@
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
+.error-area {
+  height: 15px;
+}
+.error-message {
+  color: red;
+  font-size: 12px;
+  /* background-color: green; */
+}
