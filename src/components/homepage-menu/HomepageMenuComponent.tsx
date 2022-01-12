@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import MenuItemComponent from '../menu-item/MenuItemComponent'
 import styles from './HomepageMenuComponent.module.css'
 import { Category } from '../../types/category'
+// import CategoryContext from '../../store/category-context'
 import CategoryContext from '../../store/category-context'
 
 const HomepageMenuComponent: React.FC<any> = (): JSX.Element => {

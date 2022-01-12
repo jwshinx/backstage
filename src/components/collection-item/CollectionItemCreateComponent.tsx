@@ -1,5 +1,8 @@
 import React from 'react'
 import useInput from '../../hooks/useInput'
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/firestore'
+
 import styles from './CollectionItemCreateComponent.module.css'
 
 const CollectionItemCreateComponent = () => {
@@ -30,24 +33,39 @@ const CollectionItemCreateComponent = () => {
     reset: resetItemImageUrl,
   } = useInput((value: string) => value.trim() !== '')
 
-  const formSubmitHandler = (event: any) => {
+  const formSubmitHandler = (event: React.SyntheticEvent) => {
     event.preventDefault()
-
-    if (!itemNameIsValid || !itemPriceIsValid || !itemImageUrlIsValid) {
-      return
-    }
     console.log(`+++> formSubmitHandler click!`, event)
-    console.log(`+++> formSubmitHandler do submit!`)
+
+    if (!formIsValid) return
+
+    const data = {
+      name: itemName,
+      price: itemPrice,
+      imageUrl: itemImageUrl,
+    }
+    console.log(`+++> formSubmitHandler do submit! send:`, data)
+
+    firebase
+      .firestore()
+      .collection('items')
+      .doc()
+      .set(data)
+      .then(() => {
+        console.log(`+++> formSubmitHandler firestore successfully done!`)
+      })
+      .catch((error) => {
+        console.log(`+++> formSubmitHandler firestore error:`, error)
+      })
 
     resetItemName()
     resetItemPrice()
     resetItemImageUrl()
   }
 
-  const formIsValid =
-    itemName.trim() !== '' &&
-    itemPrice.trim() !== '' &&
-    itemImageUrl.trim() !== ''
+  let formIsValid = false
+  if (itemNameIsValid && itemPriceIsValid && itemImageUrlIsValid)
+    formIsValid = true
 
   // console.log(`+++> CCC formIsValid:`, formIsValid)
 
