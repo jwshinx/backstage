@@ -12,7 +12,7 @@ import ShopPageComponent from './pages/shop/ShopPageComponent'
 import CategoryShopPageComponent from './pages/shop/CategoryShopPageComponent'
 import SignInAndSignUpPageComponent from './pages/signin/SignInAndSignUpPageComponent'
 import CheckoutPageComponent from './pages/checkout/CheckoutPageComponent'
-import GuitarCreatePageComponent from './pages/admin/GuitarCreatePageComponent'
+import ItemCreatePageComponent from './pages/admin/ItemCreatePageComponent'
 
 import { auth, createUserProfileDocument } from '../src/firebase/firebase.utils'
 
@@ -86,8 +86,8 @@ export const App = () => {
                   />
                   <Route
                     exact
-                    path="/admin/guitars/new"
-                    component={GuitarCreatePageComponent}
+                    path="/admin/:category/new"
+                    component={ItemCreatePageComponent}
                   />
                 </Switch>
               </div>

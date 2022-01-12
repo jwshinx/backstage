@@ -22,8 +22,8 @@ export default function CategoryShopPageComponent(
 
   const categoryItems = SHOP_DATA[`${category}`]
 
-  console.log(`+++> CSPC props:`, props)
-  console.log(`+++> CSPC category:`, category)
+  console.log(`+++> CatShopPageComp props:`, props)
+  console.log(`+++> CatShopPageComp category:`, category)
 
   return (
     <div className={`container ${styles['shop-category']}`}>
