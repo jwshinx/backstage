@@ -12,7 +12,7 @@ interface CollectionPreviewComponentProps {
 export default function CollectionPreviewComponent(
   props: CollectionPreviewComponentProps
 ) {
-  // console.log(`+++> CPC props:`, props)
+  console.log(`+++> CPC props:`, props)
   const { title, items } = props
   return (
     <div className={`container ${styles['shop-preview']}`}>

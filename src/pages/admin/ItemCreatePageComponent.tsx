@@ -10,6 +10,12 @@ interface stateType {
   category: keyof ShopDataType
 }
 
+/* 
+todos:
+- add items to firestore. delete shotdata
+- hoc to ensure only logged in users can add item
+- deploy!
+*/
 const ItemCreatePageComponent = (props: RouteComponentProps<any>) => {
   console.log(`+++> ICPC props:`, props)
 

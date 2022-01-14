@@ -6,6 +6,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import AuthContext from './store/auth-context'
 import CartProvider from './providers/CartProvider'
 import { CategoryContextProvider } from './store/category-context'
+import { ItemContextProvider } from './store/item-context'
 import HeaderComponent from './components/header/HeaderComponent'
 import HomepageComponent from './pages/homepage/HomepageComponent'
 import ShopPageComponent from './pages/shop/ShopPageComponent'
@@ -50,51 +51,53 @@ export const App = () => {
   }, [])
 
   return (
-    <CategoryContextProvider>
-      <CartProvider>
-        <AuthContext.Provider value={{ user: currentUser }}>
-          <div className="container">
-            <div className="col-12">
-              <div className="row mt-3 mb-3">
-                <HeaderComponent />
-              </div>
+    <ItemContextProvider>
+      <CategoryContextProvider>
+        <CartProvider>
+          <AuthContext.Provider value={{ user: currentUser }}>
+            <div className="container">
+              <div className="col-12">
+                <div className="row mt-3 mb-3">
+                  <HeaderComponent />
+                </div>
 
-              <div className="row mt-3 mb-3">
-                <Switch>
-                  <Route exact path="/" component={HomepageComponent} />
-                  <Route exact path="/shop" component={ShopPageComponent} />
-                  <Route
-                    path="/signin"
-                    exact
-                    render={() =>
-                      currentUser && currentUser.currentUser ? (
-                        <Redirect to="/" />
-                      ) : (
-                        <SignInAndSignUpPageComponent />
-                      )
-                    }
-                  />
-                  <Route
-                    exact
-                    path="/checkout"
-                    component={CheckoutPageComponent}
-                  />
-                  <Route
-                    exact
-                    path="/shop/:category"
-                    component={CategoryShopPageComponent}
-                  />
-                  <Route
-                    exact
-                    path="/admin/:category/new"
-                    component={ItemCreatePageComponent}
-                  />
-                </Switch>
+                <div className="row mt-3 mb-3">
+                  <Switch>
+                    <Route exact path="/" component={HomepageComponent} />
+                    <Route exact path="/shop" component={ShopPageComponent} />
+                    <Route
+                      path="/signin"
+                      exact
+                      render={() =>
+                        currentUser && currentUser.currentUser ? (
+                          <Redirect to="/" />
+                        ) : (
+                          <SignInAndSignUpPageComponent />
+                        )
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/checkout"
+                      component={CheckoutPageComponent}
+                    />
+                    <Route
+                      exact
+                      path="/shop/:category"
+                      component={CategoryShopPageComponent}
+                    />
+                    <Route
+                      exact
+                      path="/admin/:category/new"
+                      component={ItemCreatePageComponent}
+                    />
+                  </Switch>
+                </div>
               </div>
             </div>
-          </div>
-        </AuthContext.Provider>
-      </CartProvider>
-    </CategoryContextProvider>
+          </AuthContext.Provider>
+        </CartProvider>
+      </CategoryContextProvider>
+    </ItemContextProvider>
   )
 }
