@@ -2,11 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from './CollectionPreviewComponent.module.css'
 import CollectionItemComponent from '../collection-item/CollectionItemComponent'
-import { Item } from '../../types/item'
+import { ItemType } from '../../types/item'
 
 interface CollectionPreviewComponentProps {
   title: string
-  items: Array<Item>
+  items: Array<ItemType>
 }
 
 export default function CollectionPreviewComponent(
@@ -25,8 +25,8 @@ export default function CollectionPreviewComponent(
       <div className="row">
         <div className={`col-12 ${styles.preview}`}>
           {items
-            .filter((item: Item, idx: number) => idx < 4)
-            .map((item: Item) => (
+            .filter((item: ItemType, idx: number) => idx < 4)
+            .map((item: ItemType) => (
               <div key={item.id} className="col-2">
                 <CollectionItemComponent key={item.id} item={item} />
               </div>

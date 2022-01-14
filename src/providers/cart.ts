@@ -1,8 +1,8 @@
 export interface CartItem {
-  id: number
+  id: string
   imageUrl: string
   name: string
-  price: number
+  price: string
   quantity?: number
 }
 
@@ -71,7 +71,7 @@ export const calculateCartItemsCount = (cartItems: CartItem[]) => {
 export const calculateTotalSpending = (cartItems: CartItem[]) => {
   return cartItems.reduce((acc, current) => {
     if (current.quantity && current.price) {
-      return acc + current.quantity * current.price
+      return acc + current.quantity * parseInt(current.price)
     }
     return acc
   }, 0)

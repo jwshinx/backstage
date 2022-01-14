@@ -1,14 +1,15 @@
-// import React from 'react'
 import React, { useContext } from 'react'
-// import _ from 'lodash'
 import CollectionPreviewComponent from '../../components/collection-preview/CollectionPreviewComponent'
 import ItemContext from '../../store/item-context'
+import { ItemType } from '../../types/item'
 
+type CategoryLabels = 'guitars' | 'basses' | 'amps' | 'pedals' | 'speakers'
 // interface ItemType {
-//   id: number
+//   id: string
 //   name: string
 //   imageUrl: string
-//   price: number
+//   price: string
+//   routeName: string
 // }
 
 // interface CollectionType {
@@ -18,6 +19,14 @@ import ItemContext from '../../store/item-context'
 //   routeName: string
 //   items: ItemType[]
 // }
+
+interface FooType<T> {
+  guitars: Array<T>
+  basses: Array<T>
+  amps: Array<T>
+  speakers: Array<T>
+  pedals: Array<T>
+}
 
 // import SHOP_DATA from '../../reducers/shopData'
 
@@ -30,49 +39,56 @@ export default function ShopPageComponent() {
 
   console.log(`+++> SPC items:`, items)
 
-  const foo = {}
+  const itemsByCollection: FooType<ItemType> = {
+    guitars: [],
+    basses: [],
+    amps: [],
+    speakers: [],
+    pedals: [],
+  }
+
   items.forEach((item) => {
     // console.log(`+++> item:`, item)
 
-    if (foo.hasOwnProperty(item.routeName)) {
-      console.log(`   yes key:`, item.routeName)
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      foo[item.routeName].push(item)
-    } else {
-      console.log(`   no key:`, item.routeName)
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      foo[item.routeName] = [item]
-    }
-    // foo[item.routeName] = [item]
+    itemsByCollection[item.routeName as CategoryLabels].push(item)
+
+    // if (foo.hasOwnProperty(item.routeName)) {
+    //   console.log(`   yes key:`, item.routeName)
+    //   // e slint-disable-next-line @typescript-eslint/ban-ts-comment
+    //   // @ ts-ignore
+    //   foo[item.routeName as CategoryLabels].push(item)
+    // } else {
+    //   console.log(`   no key:`, item.routeName)
+    //   // e slint-disable-next-line @typescript-eslint/ban-ts-comment
+    //   // @ ts-ignore
+    //   foo[item.routeName as CategoryLabels] = [item]
+    // }
   })
 
   // const collectionItems = _.mapKeys(items, 'routeName')
 
   // console.log(`+++> collectionItems:`, collectionItems)
-  console.log(`+++> foo:`, foo)
-  console.log(`+++> keys:`, Object.keys(foo))
+  console.log(`+++> itemsByCollection:`, itemsByCollection)
+  console.log(`+++> keys:`, Object.keys(itemsByCollection))
 
-  const myItems = Object.keys(foo).map((key: string) => {
-    console.log(`     ---> key:`, key)
-    // console.log(`     ---> fookey:`, foo[key])
+  // const myItems = Object.keys(itemsByCollection).map((key: string) => {
+  //   console.log(`     ---> key:`, key)
+  //   // console.log(`     ---> fookey:`, foo[key])
+  //   return itemsByCollection[key as keyof typeof itemsByCollection]
+  // })
+  // console.log(`>>>> myItems:`, myItems)
 
-    return foo[key as keyof typeof foo]
-  })
-
-  console.log(`>>>> myItems:`, myItems)
   return (
     <>
       {/* {ctx.items.map((item: any) => {
 
       })} */}
-      {Object.keys(foo).map((key) => {
+      {Object.keys(itemsByCollection).map((key) => {
         return (
           <CollectionPreviewComponent
             key={key}
             title={key}
-            items={foo[key as keyof typeof foo]}
+            items={itemsByCollection[key as keyof typeof itemsByCollection]}
           />
         )
       })}

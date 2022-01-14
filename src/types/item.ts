@@ -4,3 +4,11 @@ export interface Item {
   imageUrl: string
   price: number
 }
+
+export interface ItemType {
+  id: string
+  name: string
+  imageUrl: string
+  price: string
+  routeName: string
+}
