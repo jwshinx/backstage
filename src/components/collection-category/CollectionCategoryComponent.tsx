@@ -13,6 +13,7 @@ export default function CollectionCategoryComponent(
   const { items } = props
   const factory = new RowFactory(items)
 
+  console.log(`+++> CCC rowsOfItemsHash:`, factory.rowsOfItemsHash)
   return (
     <>
       {Object.keys(factory.rowsOfItemsHash).map(

@@ -2,13 +2,7 @@ import React, { useState, useEffect } from 'react'
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/firestore'
 
-interface ItemType {
-  id: string
-  name: string
-  price: string
-  imageUrl: string
-  routeName: string
-}
+import { ItemType } from '../types/item'
 
 interface ItemContextType {
   items: Array<ItemType>
