@@ -19,7 +19,7 @@ import ItemContext from '../../store/item-context'
 //   items: ItemType[]
 // }
 
-import SHOP_DATA from '../../reducers/shopData'
+// import SHOP_DATA from '../../reducers/shopData'
 
 export default function ShopPageComponent() {
   const ctx = useContext(ItemContext)
@@ -52,18 +52,27 @@ export default function ShopPageComponent() {
 
   // console.log(`+++> collectionItems:`, collectionItems)
   console.log(`+++> foo:`, foo)
+  console.log(`+++> keys:`, Object.keys(foo))
 
+  const myItems = Object.keys(foo).map((key: string) => {
+    console.log(`     ---> key:`, key)
+    // console.log(`     ---> fookey:`, foo[key])
+
+    return foo[key as keyof typeof foo]
+  })
+
+  console.log(`>>>> myItems:`, myItems)
   return (
     <>
       {/* {ctx.items.map((item: any) => {
 
       })} */}
-      {Object.keys(SHOP_DATA).map((key) => {
+      {Object.keys(foo).map((key) => {
         return (
           <CollectionPreviewComponent
             key={key}
             title={key}
-            items={SHOP_DATA[key as keyof typeof SHOP_DATA].items}
+            items={foo[key as keyof typeof foo]}
           />
         )
       })}
