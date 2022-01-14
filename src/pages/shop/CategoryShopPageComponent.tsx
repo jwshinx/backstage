@@ -3,7 +3,7 @@ import styles from './CategoryShopPageComponent.module.css'
 
 import { RouteComponentProps, useLocation, Link } from 'react-router-dom'
 import CollectionCategoryComponent from '../../components/collection-category/CollectionCategoryComponent'
-import SHOP_DATA, { ShopDataType } from '../../reducers/shopData'
+import { ShopDataType } from '../../reducers/shopData'
 import ItemContext from '../../store/item-context'
 
 interface CategoryShopPageComponentProps extends RouteComponentProps<any> {
@@ -24,15 +24,7 @@ export default function CategoryShopPageComponent(
   const ctx = useContext(ItemContext)
   const { items } = ctx
 
-  const categoryItems = SHOP_DATA[`${category}`]
-
-  console.log(`+++> CatShopPageComp props:`, props)
-  console.log(`+++> CatShopPageComp category:`, category)
-  console.log(`+++> CatShopPageComp categoryItems.items:`, categoryItems.items)
-  console.log(`+++> CatShopPageComp items:`, items)
-
-  const foo = items.filter((item) => item.routeName === category)
-  console.log(`+++> CatShopPageComp foo:`, foo)
+  const categoryItems = items.filter((item) => item.routeName === category)
 
   return (
     <div className={`container ${styles['shop-category']}`}>
@@ -55,7 +47,7 @@ export default function CategoryShopPageComponent(
       </div>
       <div className="row">
         <div className={`col-12 ${styles.preview}`}>
-          <CollectionCategoryComponent items={foo} />
+          <CollectionCategoryComponent items={categoryItems} />
         </div>
       </div>
     </div>
