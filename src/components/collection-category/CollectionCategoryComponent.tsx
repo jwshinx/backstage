@@ -1,10 +1,10 @@
 import React from 'react'
-import { Item } from '../../types/item'
+import { ItemType } from '../../types/item'
 import RowFactory from '../../utils/RowFactory'
 import CollectionItemComponent from '../collection-item/CollectionItemComponent'
 
 interface CollectionCategoryComponentProps {
-  items: Array<Item>
+  items: Array<ItemType>
 }
 
 export default function CollectionCategoryComponent(
@@ -19,13 +19,15 @@ export default function CollectionCategoryComponent(
         (keyValue: string, idx: number) => {
           return (
             <div className="row my-3" key={idx}>
-              {factory.rowsOfItemsHash[parseInt(keyValue)].map((item: Item) => {
-                return (
-                  <div className="col-3" key={item.id}>
-                    <CollectionItemComponent key={item.id} item={item} />
-                  </div>
-                )
-              })}
+              {factory.rowsOfItemsHash[parseInt(keyValue)].map(
+                (item: ItemType) => {
+                  return (
+                    <div className="col-3" key={item.id}>
+                      <CollectionItemComponent key={item.id} item={item} />
+                    </div>
+                  )
+                }
+              )}
             </div>
           )
         }

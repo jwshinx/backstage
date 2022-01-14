@@ -1,10 +1,10 @@
-import { Item } from '../types/item'
+import { ItemType } from '../types/item'
 
 class RowFactory {
-  items: Array<Item>
-  rowsOfItemsHash: { [key: number]: Array<Item> }
+  items: Array<ItemType>
+  rowsOfItemsHash: { [key: number]: Array<ItemType> }
 
-  constructor(items: Array<Item>) {
+  constructor(items: Array<ItemType>) {
     this.items = items
     this.rowsOfItemsHash = {} // { 1: [{e0},{e1},{e2},{e3}], 2: [{e4}] }
     this.setRowsOfItemsHash()
