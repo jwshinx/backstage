@@ -12,7 +12,11 @@ interface stateType {
 
 /* 
 todos:
-- add items to firestore. delete shotdata
+- useHistory to reroute unsigned in users away from create page. #309 of max
+- onClose cart from anywhere click. grep "veneer -i" in colleges
+- firestore access security
+- encodeUrl on create item form
+- cache getItems
 - hoc to ensure only logged in users can add item
 - deploy!
 */
