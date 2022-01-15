@@ -13,32 +13,23 @@ const ItemContext = React.createContext<ItemContextType>({
 })
 
 export const ItemContextProvider = (props: any) => {
-  console.log(`+++> ItemContext props: ${props}`)
-
   const [items, setItems] = useState<Array<ItemType>>([])
 
   useEffect(() => {
-    const unsubscribeItems = firebase
-      .firestore()
-      .collection('items')
-      .onSnapshot(
-        (snapShot) => {
-          const data = snapShot.docs.map((doc) => {
-            return {
-              imageUrl: doc.data().imageUrl,
-              name: doc.data().name,
-              price: doc.data().price,
-              routeName: doc.data().routeName,
-              id: doc.id,
-            }
-          })
-          setItems(data)
-        },
-        () => {
-          console.log(`+++> onSnapshot callback`)
-        }
-      )
-    return () => unsubscribeItems()
+    const itemsRef = firebase.firestore().collection('items')
+
+    const itemsData: Array<ItemType> = []
+    itemsRef
+      .get()
+      .then((doc) => {
+        doc.forEach((item) => {
+          itemsData.push({ id: item.id, ...item.data() } as ItemType)
+        })
+        setItems(itemsData)
+      })
+      .catch((error) => {
+        console.log(`items fetch error:`, error)
+      })
   }, [])
 
   return (
