@@ -24,6 +24,10 @@ export default function CategoryShopPageComponent(
   const ctx = useContext(ItemContext)
   const { items } = ctx
 
+  if (!items) {
+    return <h3>Loading...</h3>
+  }
+
   const categoryItems = items.filter((item) => item.routeName === category)
 
   return (
