@@ -12,24 +12,32 @@ const ItemContext = React.createContext<ItemContextType>({
   items: [],
 })
 
+const fetchItemsData = () => {
+  console.log(`+++> @joel xxx item-context useEffect: fetch items`)
+  const itemsRef = firebase.firestore().collection('items')
+
+  const itemsData: Array<ItemType> = []
+  itemsRef
+    .get()
+    .then((doc) => {
+      doc.forEach((item) => {
+        itemsData.push({ id: item.id, ...item.data() } as ItemType)
+      })
+      // setItems(itemsData)
+    })
+    .catch((error) => {
+      console.log(`items fetch error:`, error)
+    })
+  console.log(`+++> @joel xxx itemsData`, itemsData)
+  return itemsData
+}
+
 export const ItemContextProvider = (props: any) => {
   const [items, setItems] = useState<Array<ItemType>>([])
 
   useEffect(() => {
-    const itemsRef = firebase.firestore().collection('items')
-
-    const itemsData: Array<ItemType> = []
-    itemsRef
-      .get()
-      .then((doc) => {
-        doc.forEach((item) => {
-          itemsData.push({ id: item.id, ...item.data() } as ItemType)
-        })
-        setItems(itemsData)
-      })
-      .catch((error) => {
-        console.log(`items fetch error:`, error)
-      })
+    const results = fetchItemsData()
+    setItems(results)
   }, [])
 
   return (
