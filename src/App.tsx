@@ -33,6 +33,7 @@ const queryClient = new QueryClient({
 })
 export const App = () => {
   const [currentUser, setCurrentUser] = useState<any | null>(null)
+  const isLoggedIn = currentUser && currentUser.currentUser
 
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(
@@ -77,17 +78,19 @@ export const App = () => {
                     <Switch>
                       <Route exact path="/" component={HomepageComponent} />
                       <Route exact path="/shop" component={ShopPageComponent} />
-                      <Route
-                        path="/signin"
-                        exact
-                        render={() =>
-                          currentUser && currentUser.currentUser ? (
-                            <Redirect to="/" />
-                          ) : (
-                            <SignInAndSignUpPageComponent />
-                          )
-                        }
-                      />
+                      {!isLoggedIn && (
+                        <Route
+                          path="/signin"
+                          exact
+                          render={() =>
+                            currentUser && currentUser.currentUser ? (
+                              <Redirect to="/" />
+                            ) : (
+                              <SignInAndSignUpPageComponent />
+                            )
+                          }
+                        />
+                      )}
                       <Route
                         exact
                         path="/checkout"
@@ -98,11 +101,16 @@ export const App = () => {
                         path="/shop/:category"
                         component={CategoryShopPageComponent}
                       />
-                      <Route
-                        exact
-                        path="/admin/:category/new"
-                        component={ItemCreatePageComponent}
-                      />
+                      {isLoggedIn && (
+                        <Route
+                          exact
+                          path="/admin/:category/new"
+                          component={ItemCreatePageComponent}
+                        />
+                      )}
+                      <Route path="*">
+                        <Redirect to="/" />
+                      </Route>
                     </Switch>
                   </div>
                 </div>
