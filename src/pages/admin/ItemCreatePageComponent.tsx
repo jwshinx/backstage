@@ -1,8 +1,9 @@
-import React from 'react'
-import { RouteComponentProps, useLocation } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { RouteComponentProps, useLocation, useHistory } from 'react-router-dom'
 
 import CollectionItemCreateComponent from '../../components/collection-item/CollectionItemCreateComponent'
 import { ShopDataType } from '../../reducers/shopData'
+import AuthContext from '../../store/auth-context'
 
 import styles from './ItemCreatePageComponent.module.css'
 
@@ -12,7 +13,6 @@ interface stateType {
 
 /* 
 todos:
-- useHistory to reroute unsigned in users away from create page. #309 of max
 - onClose cart from anywhere click. grep "veneer -i" in colleges
 - firestore access security
 - encodeUrl on create item form
@@ -22,12 +22,23 @@ todos:
 */
 const ItemCreatePageComponent = (props: RouteComponentProps<any>) => {
   console.log(`+++> ICPC props:`, props)
+  const authCtx: any = useContext(AuthContext)
+  const history = useHistory()
+
+  if (
+    !(
+      authCtx &&
+      authCtx.user &&
+      authCtx.user.currentUser &&
+      authCtx.user.currentUser.email === 'jwshin@gmail.com'
+    )
+  ) {
+    history.replace('/')
+  }
 
   const {
     state: { category },
   } = useLocation<stateType>()
-
-  console.log(`+++> ICPC category:`, category)
 
   return (
     <div className="row justify-content-start">

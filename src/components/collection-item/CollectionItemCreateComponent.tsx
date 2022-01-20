@@ -23,7 +23,7 @@ const CollectionItemCreateComponent = (
   } = useLocation<stateType>()
 
   console.log(`+++> CollectionItemCreateComponent props:`, props)
-  console.log(`+++> CollectionItemCreateComponent category:`, category)
+  // console.log(`+++> CollectionItemCreateComponent category:`, category)
 
   const {
     value: itemName,
