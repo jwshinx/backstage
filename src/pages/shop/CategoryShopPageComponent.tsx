@@ -1,10 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
+import _ from 'lodash'
 import styles from './CategoryShopPageComponent.module.css'
 
 import { RouteComponentProps, useLocation, Link } from 'react-router-dom'
 import CollectionCategoryComponent from '../../components/collection-category/CollectionCategoryComponent'
 import { ShopDataType } from '../../reducers/shopData'
 import ItemContext from '../../store/item-context'
+import { SearchInput } from '../../ui/SearchInput'
 
 interface CategoryShopPageComponentProps extends RouteComponentProps<any> {
   category: string
@@ -21,6 +23,8 @@ export default function CategoryShopPageComponent(
     state: { category },
   } = useLocation<stateType>()
 
+  const [query, setQuery] = useState<string>('')
+
   const ctx = useContext(ItemContext)
   const { items } = ctx
 
@@ -30,15 +34,15 @@ export default function CategoryShopPageComponent(
 
   const categoryItems = items.filter((item) => item.routeName === category)
 
+  console.log(`+++> cspc query:`, query)
+
   return (
     <div className={`container ${styles['shop-category']}`}>
       <div className="row">
-        <div className="col-12">
+        <div className="col-10">
           <h1>{props.match.params.category.toUpperCase()}</h1>
         </div>
-      </div>
-      <div className="row">
-        <div className="col-4">
+        <div className="col-2">
           <Link
             to={{
               pathname: `/admin/${category}/new`,
@@ -50,8 +54,26 @@ export default function CategoryShopPageComponent(
         </div>
       </div>
       <div className="row">
-        <div className={`col-12 ${styles.preview}`}>
-          <CollectionCategoryComponent items={categoryItems} />
+        <div className={`col-2`}>
+          <div className="row mt-3 bg-secondary">
+            <span>aaa</span>
+            <span>aaa</span>
+          </div>
+          <div className="row mt-3 bg-secondary">
+            {_.isEmpty(items) ? (
+              <></>
+            ) : (
+              <SearchInput
+                placeholderText="Search name further"
+                setSearchQuery={(query) => {
+                  setQuery(query)
+                }}
+              />
+            )}
+          </div>
+        </div>
+        <div className={`col-10 ${styles.preview}`}>
+          <CollectionCategoryComponent query={query} items={categoryItems} />
         </div>
       </div>
     </div>

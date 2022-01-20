@@ -5,13 +5,17 @@ import CollectionItemComponent from '../collection-item/CollectionItemComponent'
 
 interface CollectionCategoryComponentProps {
   items: Array<ItemType>
+  query: string
 }
 
 export default function CollectionCategoryComponent(
   props: CollectionCategoryComponentProps
 ) {
-  const { items } = props
+  const { items, query } = props
   const factory = new RowFactory(items)
+
+  console.log(`+++> CCC query:`, query)
+  console.log(`+++> CCC factory.rowsOfItemsHash:`, factory.rowsOfItemsHash)
 
   return (
     <>
