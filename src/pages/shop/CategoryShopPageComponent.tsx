@@ -55,16 +55,12 @@ export default function CategoryShopPageComponent(
       </div>
       <div className="row">
         <div className={`col-2`}>
-          <div className="row mt-3 bg-secondary">
-            <span>aaa</span>
-            <span>aaa</span>
-          </div>
-          <div className="row mt-3 bg-secondary">
+          <div className="row mt-3">
             {_.isEmpty(items) ? (
               <></>
             ) : (
               <SearchInput
-                placeholderText="Search name further"
+                placeholderText="Search name or price"
                 setSearchQuery={(query) => {
                   setQuery(query)
                 }}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { ItemType } from '../../types/item'
 import CollectionItemComponent from '../collection-item/CollectionItemComponent'
+import genericSearch from '../../utils/genericSearch'
 
 interface CollectionCategoryComponentProps {
   items: Array<ItemType>
@@ -17,11 +18,15 @@ export default function CollectionCategoryComponent(
   return (
     <>
       <div className="row my-3">
-        {items.map((item: ItemType) => (
-          <div className="col-3" key={item.id}>
-            <CollectionItemComponent key={item.id} item={item} />
-          </div>
-        ))}
+        {items
+          .filter((item) =>
+            genericSearch(item, ['name', 'price'], query, false)
+          )
+          .map((item: ItemType) => (
+            <div className="col-3" key={item.id}>
+              <CollectionItemComponent key={item.id} item={item} />
+            </div>
+          ))}
       </div>
     </>
   )
