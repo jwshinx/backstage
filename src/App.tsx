@@ -19,6 +19,7 @@ import CheckoutPageComponent from './pages/checkout/CheckoutPageComponent'
 import ItemCreatePageComponent from './pages/admin/ItemCreatePageComponent'
 
 import { auth, createUserProfileDocument } from '../src/firebase/firebase.utils'
+import { CurrentUserType, UserType, AuthTimeType } from './types/auth'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,8 +32,9 @@ const queryClient = new QueryClient({
     },
   },
 })
+
 export const App = () => {
-  const [currentUser, setCurrentUser] = useState<any | null>(null)
+  const [currentUser, setCurrentUser] = useState<CurrentUserType | null>(null)
   const isLoggedIn = currentUser && currentUser.currentUser
 
   useEffect(() => {
@@ -46,7 +48,12 @@ export const App = () => {
             setCurrentUser({
               currentUser: {
                 id: snapShot.id,
-                ...snapShot.data(),
+                ...(snapShot.data() as {
+                  displayName: string
+                  email: string
+                  color: string
+                  createdAt: AuthTimeType
+                }),
               },
             })
           })
@@ -67,7 +74,7 @@ export const App = () => {
       <ItemContextProvider>
         <CategoryContextProvider>
           <CartProvider>
-            <AuthContext.Provider value={{ user: currentUser }}>
+            <AuthContext.Provider value={{ user: currentUser as UserType }}>
               <div className="container">
                 <div className="col-12">
                   <div className="row mt-3 mb-3">
