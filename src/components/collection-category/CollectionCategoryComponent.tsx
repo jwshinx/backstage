@@ -15,9 +15,6 @@ export default function CollectionCategoryComponent(
 ) {
   const { items, query, sortProperty } = props
 
-  console.log(`+++> CCC xxx query:`, query)
-  console.log(`+++> CCC xxx sortProperty:`, sortProperty)
-
   return (
     <>
       <div className="row my-3">

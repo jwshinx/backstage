@@ -47,10 +47,6 @@ export default function CategoryShopPageComponent(
     price: item.price,
   }))
 
-  console.log(`+++> cspc query:`, query)
-  console.log(`+++> cspc sortProperty:`, sortProperty)
-  console.log(`+++> cspc sortableItems:`, sortableItems)
-
   return (
     <div className={`container ${styles['shop-category']}`}>
       <div className="row">

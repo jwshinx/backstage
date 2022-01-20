@@ -35,10 +35,8 @@ export const App = () => {
   const [currentUser, setCurrentUser] = useState<any | null>(null)
 
   useEffect(() => {
-    console.log(`+++> App useEffect 0a`)
     const unsubscribeFromAuth = auth.onAuthStateChanged(
       async (userAuth: any) => {
-        console.log(`+++> App useEffect 1 userAuth:`, userAuth)
         if (userAuth) {
           const userRef = await createUserProfileDocument(userAuth, {
             color: 'red',
@@ -58,7 +56,6 @@ export const App = () => {
     )
 
     return () => {
-      console.log(`+++> App useEffect 100`)
       // authSubscription
       unsubscribeFromAuth()
     }

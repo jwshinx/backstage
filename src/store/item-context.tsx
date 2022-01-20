@@ -15,7 +15,6 @@ const ItemContext = React.createContext<ItemContextType>({
 })
 
 const fetchItemsData = async () => {
-  // console.log(`+++> @joel xxx item-context useEffect: fetch items`)
   const itemsRef = firebase.firestore().collection('items')
 
   const itemsData: Array<ItemType> = []
@@ -30,7 +29,6 @@ const fetchItemsData = async () => {
     .catch((error) => {
       console.log(`items fetch error:`, error)
     })
-  // console.log(`+++> @joel xxx fetchItemsData`, itemsData)
   return itemsData
 }
 
@@ -44,11 +42,9 @@ export const ItemContextProvider = (props: any) => {
     refetchOnWindowFocus: false,
     refetchInterval: false,
     refetchOnReconnect: false,
-    onSuccess: () => console.log('xxx> 333 @joel react-query onSuccess!:'),
   })
 
   useEffect(() => {
-    console.log(`xxx> @joel useEffect`)
     // e slint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ t s-ignore
     setItems(data!)

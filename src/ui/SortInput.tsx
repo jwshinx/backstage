@@ -15,10 +15,8 @@ function SortInput<T>({
   }
 
   const object = objects.length > 0 ? objects[0] : {}
-  console.log(`+++> SortInput objects:`, objects)
 
   const onSelectChange = (object: string): void => {
-    console.log('+++> SortInput onSelectChange fired!')
     const values: Array<string> = object.split('-')
     if (values.length === 2) {
       onSortPropertyClick({
