@@ -1,19 +1,22 @@
 import React from 'react'
-import { ItemType } from '../../types/item'
+import { ItemType, SortPropertyType, SortableItemType } from '../../types/item'
 import CollectionItemComponent from '../collection-item/CollectionItemComponent'
 import genericSearch from '../../utils/genericSearch'
+import genericSort from '../../utils/genericSort'
 
 interface CollectionCategoryComponentProps {
   items: Array<ItemType>
   query: string
+  sortProperty: SortPropertyType<SortableItemType>
 }
 
 export default function CollectionCategoryComponent(
   props: CollectionCategoryComponentProps
 ) {
-  const { items, query } = props
+  const { items, query, sortProperty } = props
 
   console.log(`+++> CCC xxx query:`, query)
+  console.log(`+++> CCC xxx sortProperty:`, sortProperty)
 
   return (
     <>
@@ -22,6 +25,7 @@ export default function CollectionCategoryComponent(
           .filter((item) =>
             genericSearch(item, ['name', 'price'], query, false)
           )
+          .sort((a, b) => genericSort(a, b, sortProperty))
           .map((item: ItemType) => (
             <div className="col-3" key={item.id}>
               <CollectionItemComponent key={item.id} item={item} />

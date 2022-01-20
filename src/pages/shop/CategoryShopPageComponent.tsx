@@ -7,6 +7,9 @@ import CollectionCategoryComponent from '../../components/collection-category/Co
 import { ShopDataType } from '../../reducers/shopData'
 import ItemContext from '../../store/item-context'
 import { SearchInput } from '../../ui/SearchInput'
+import SortInput from '../../ui/SortInput'
+
+import { SortPropertyType, SortableItemType } from '../../types/item'
 
 interface CategoryShopPageComponentProps extends RouteComponentProps<any> {
   category: string
@@ -24,6 +27,12 @@ export default function CategoryShopPageComponent(
   } = useLocation<stateType>()
 
   const [query, setQuery] = useState<string>('')
+  const [sortProperty, setSortProperty] = useState<
+    SortPropertyType<SortableItemType>
+  >({
+    property: 'name',
+    isDescending: false,
+  })
 
   const ctx = useContext(ItemContext)
   const { items } = ctx
@@ -33,8 +42,14 @@ export default function CategoryShopPageComponent(
   }
 
   const categoryItems = items.filter((item) => item.routeName === category)
+  const sortableItems = items.map((item) => ({
+    name: item.name,
+    price: item.price,
+  }))
 
   console.log(`+++> cspc query:`, query)
+  console.log(`+++> cspc sortProperty:`, sortProperty)
+  console.log(`+++> cspc sortableItems:`, sortableItems)
 
   return (
     <div className={`container ${styles['shop-category']}`}>
@@ -67,9 +82,19 @@ export default function CategoryShopPageComponent(
               />
             )}
           </div>
+          <div className="row mt-3">
+            <SortInput
+              objects={sortableItems}
+              onSortPropertyClick={setSortProperty}
+            />
+          </div>
         </div>
         <div className={`col-10 ${styles.preview}`}>
-          <CollectionCategoryComponent query={query} items={categoryItems} />
+          <CollectionCategoryComponent
+            sortProperty={sortProperty}
+            query={query}
+            items={categoryItems}
+          />
         </div>
       </div>
     </div>
