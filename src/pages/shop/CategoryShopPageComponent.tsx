@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import _ from 'lodash'
 import styles from './CategoryShopPageComponent.module.css'
 
 import { RouteComponentProps, useLocation, Link } from 'react-router-dom'
 import CollectionCategoryComponent from '../../components/collection-category/CollectionCategoryComponent'
-import { ShopDataType } from '../../reducers/shopData'
-import ItemContext from '../../store/item-context'
+import SHOP_DATA, { ShopDataType } from '../../reducers/shopData'
+// import ItemContext from '../../store/item-context'
 import { SearchInput } from '../../ui/SearchInput'
 import SortInput from '../../ui/SortInput'
 
@@ -34,14 +34,14 @@ export default function CategoryShopPageComponent(
     isDescending: false,
   })
 
-  const ctx = useContext(ItemContext)
-  const { items } = ctx
+  // const ctx = useContext(ItemContext)
+  // const { items } = ctx
+  const { items } = SHOP_DATA[`${category}`]
 
   if (!items) {
     return <h3>Loading...</h3>
   }
 
-  const categoryItems = items.filter((item) => item.routeName === category)
   const sortableItems = items.map((item) => ({
     name: item.name,
     price: item.price,
@@ -89,7 +89,7 @@ export default function CategoryShopPageComponent(
           <CollectionCategoryComponent
             sortProperty={sortProperty}
             query={query}
-            items={categoryItems}
+            items={items}
           />
         </div>
       </div>

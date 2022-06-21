@@ -89,10 +89,10 @@ const SHOP_DATA: ShopDataType = {
       },
       {
         id: '7',
-        name: 'Fenderrrr',
+        name: 'Fender',
         imageUrl:
           'https://images.unsplash.com/flagged/photo-1552331619-7f97d9a4c9c6?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=Mnw0Mjg5N3wwfDF8c2VhcmNofDM4fHxlbGVjdHJpYyUyMGd1aXRhcnxlbnwwfHx8fDE2MjMyMjA5OTc\u0026ixlib=rb-1.2.1\u0026q=80\u0026w=1080',
-        price: '800',
+        price: '650',
         routeName: 'guitars',
       },
       {
