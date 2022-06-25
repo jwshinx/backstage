@@ -22,9 +22,6 @@ const CollectionItemCreateComponent = (
     state: { category },
   } = useLocation<stateType>()
 
-  console.log(`+++> CollectionItemCreateComponent props:`, props)
-  // console.log(`+++> CollectionItemCreateComponent category:`, category)
-
   const {
     value: itemName,
     isValid: itemNameIsValid,

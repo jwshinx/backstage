@@ -19,9 +19,10 @@ todos:
 - cache getItems
 - hoc to ensure only logged in users can add item
 - deploy!
+
 */
-const ItemCreatePageComponent = (props: RouteComponentProps<any>) => {
-  console.log(`+++> ICPC props:`, props)
+// const ItemCreatePageComponent = (props: RouteComponentProps<any>) => {
+const ItemCreatePageComponent = () => {
   const authCtx: any = useContext(AuthContext)
   const history = useHistory()
 

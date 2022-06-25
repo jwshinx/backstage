@@ -8,15 +8,17 @@ import CartDropdownComponent from '../cart-dropdown/CartDropdownComponent'
 // import CartContext from '../../store/cart-context'
 import { CartContext } from '../../providers/CartProvider'
 import AuthContext from '../../store/auth-context'
+import { CartItem } from '../../providers/cart'
+import { CartContextInterface } from '../../types/cart-context-interface'
 
 import styles from './HeaderComponent.module.css'
 
 export default function HeaderComponent() {
-  const cartCtx: any = useContext(CartContext)
+  const cartCtx: CartContextInterface | null = useContext(CartContext)
   const authCtx: any = useContext(AuthContext)
   // const [showCart, setShowCart] = useState(false)
 
-  const { hidden } = cartCtx
+  const { hidden } = cartCtx as CartContextInterface
 
   // console.log(`+++> HeaderComponent props:`, props)
   // console.log(`+++> HeaderComponent cartCtx:`, cartCtx)
@@ -25,10 +27,10 @@ export default function HeaderComponent() {
 
   let loggedInUser = null
   if (authCtx && authCtx.user && authCtx.user.currentUser) {
-    console.log(
-      `+++> HeaderComponent authCtx.user.currentUser:`,
-      authCtx.user.currentUser
-    )
+    // console.log(
+    //   `+++> HeaderComponent authCtx.user.currentUser:`,
+    //   authCtx.user.currentUser
+    // )
     loggedInUser = authCtx.user.currentUser
   } else {
     // console.log(`+++> HeaderComponent authCtx.user.currentUser is undefined`)
@@ -57,9 +59,6 @@ export default function HeaderComponent() {
           <div className="row">
             <div className="col-sm-auto">
               <Link to="/shop">SHOP</Link>
-            </div>
-            <div className="col-sm-auto">
-              <Link to="/shop">CONTACT</Link>
             </div>
             {loggedInUser ? (
               <div

@@ -7,17 +7,7 @@ import {
   calculateCartItemsCount,
   calculateTotalSpending,
 } from './cart'
-
-export interface CartContextInterface {
-  hidden: boolean
-  cartItems: Array<CartItem>
-  toggleHidden: () => void
-  addQuantity: (item: CartItem) => void
-  cartItemsCount: number
-  totalSpending: number
-  removeQuantity: (item: CartItem) => void
-  clearItem: (item: CartItem) => void
-}
+import { CartContextInterface } from '../types/cart-context-interface'
 
 export const CartContext = createContext<CartContextInterface | null>(null)
 

@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../../ui/button/CustomButtonComponent.module.css'
 import CustomButton from '../../ui/button/CustomButtonComponent'
 import useInput from '../../hooks/useInput'
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils'
 
 export default function SignInComponent() {
+  const [invalidLogin, setInvalidLogin] = useState(false)
+
   const {
     value: enteredEmail,
     isValid: enteredEmailIsValid,
@@ -25,7 +27,6 @@ export default function SignInComponent() {
 
   const formSubmitHandler = async (event: React.SyntheticEvent) => {
     event.preventDefault()
-    console.log(`+++> SIC formSubmitHandler 0`)
 
     if (!formIsValid) {
       return
@@ -35,9 +36,8 @@ export default function SignInComponent() {
       await auth.signInWithEmailAndPassword(enteredEmail, enteredPassword)
       resetEmailValue()
       resetPasswordValue()
-      console.log(`+++> SIC formSubmitHandler 1`)
     } catch (error) {
-      console.log(`+++> SIC formSubmitHandler error:`, error)
+      setInvalidLogin(true)
     }
   }
 
@@ -73,6 +73,11 @@ export default function SignInComponent() {
           <span className="text-secondary">
             Sign in with your email and password
           </span>
+        </div>
+      </div>
+      <div className="row mt-3">
+        <div className="col">
+          {invalidLogin && <p className="text-danger">Invalid login.</p>}
         </div>
       </div>
       <div className="row">

@@ -15,7 +15,6 @@ export default function CustomButtonComponent({
   onClick?: () => void
   otherProps?: any
 }) {
-  console.log(`+++> CBC otherProps:`, otherProps)
   return (
     <button
       onClick={onClick}
