@@ -1,33 +1,17 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import CollectionPreviewComponent from '../../components/collection-preview/CollectionPreviewComponent'
-import ItemContext from '../../store/item-context'
-import { ItemType } from '../../types/item'
+import SHOP_DATA from '../../reducers/shopData'
 
-type CategoryLabels = 'guitars' | 'basses' | 'amps' | 'pedals' | 'speakers'
-
-interface ItemsByCollectionType<T> {
-  guitars: Array<T>
-  basses: Array<T>
-  amps: Array<T>
-  speakers: Array<T>
-  pedals: Array<T>
-}
+// interface ItemsByCollectionType<T> {
+//   guitars: Array<T>
+//   basses: Array<T>
+//   amps: Array<T>
+//   speakers: Array<T>
+//   pedals: Array<T>
+// }
 
 export default function ShopPageComponent() {
-  const ctx = useContext(ItemContext)
-  const { items } = ctx
-
-  const itemsByCollection: ItemsByCollectionType<ItemType> = {
-    guitars: [],
-    basses: [],
-    amps: [],
-    speakers: [],
-    pedals: [],
-  }
-
-  items.forEach((item) => {
-    itemsByCollection[item.routeName as CategoryLabels].push(item)
-  })
+  const itemsByCollection = SHOP_DATA
 
   return (
     <>
@@ -36,7 +20,9 @@ export default function ShopPageComponent() {
           <CollectionPreviewComponent
             key={key}
             title={key}
-            items={itemsByCollection[key as keyof typeof itemsByCollection]}
+            items={
+              itemsByCollection[key as keyof typeof itemsByCollection].items
+            }
           />
         )
       })}

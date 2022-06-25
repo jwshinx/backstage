@@ -45,7 +45,7 @@ const ItemCreatePageComponent = (props: RouteComponentProps<any>) => {
       <div className="col-12">
         <h3>{category.toUpperCase()}</h3>
         <span className={styles['description']}>
-          Add details for creating a new item.
+          Add details to create a new item.
         </span>
         <CollectionItemCreateComponent category={category} />
       </div>
